@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/fetcher');
 
 
-let repoSchema = mongoose.Schema({
+let checkoutSchema = mongoose.Schema({
 
 });
 
-let Repo = mongoose.model('Repo', repoSchema);
+let Checkout = mongoose.model('Checkout', checkoutSchema);
 
 
 
