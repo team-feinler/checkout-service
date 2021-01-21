@@ -1,24 +1,26 @@
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/fetcher');
+const Mongoose = require('mongoose');
+const Db = 'mongodb://localhost/prinventory';
+const mongooseOptions = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false
+};
 
-
-let checkoutSchema = mongoose.Schema({
-
+Mongoose.connect(Db, mongooseOptions, (err) => {
+  if (err) {
+    console.error(err);
+  } else {
+    console.log('Connected to mongodb');
+  }
 });
 
-let Checkout = mongoose.model('Checkout', checkoutSchema);
 
+const PrinventorySchema = Mongoose.Schema({
+  id: Number,
+  price: Number,
+  inventory: Number,
+});
 
+const Prinventory = Mongoose.model('Prinventory', PrinventorySchema);
 
-// {
-//   ProductId: Number,
-//   Price: Number,
-//   Inventory: Number
-// }
-
-// {
-//   ProductId: Number,
-//   Url: String,
-//   Category: String,
-//   Primary: Boolean,
-// }
+module.exports = Prinventory;
