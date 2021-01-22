@@ -10,7 +10,7 @@
   "scripts": {
     "seed": "node database/seed/populate.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./server/server.js",
+    "start": "node ./server/index.js",
     "react-dev": "webpack --mode=development --watch"
   },
   "dependencies": {
