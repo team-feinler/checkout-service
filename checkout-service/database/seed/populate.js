@@ -6,7 +6,7 @@ const Mongoose = require('mongoose');
 const DbSeed = async function() {
 
   let checkForPreviousSeedCount = await Prinventory.countDocuments();
-  if (checkForPreviousSeedCount <= 100) {
+  if (checkForPreviousSeedCount) {
     await Prinventory.db.dropDatabase();
   }
 
@@ -17,10 +17,13 @@ const DbSeed = async function() {
     .catch((err) => console.error('Error seeding database', err))
     .finally(() => {
       console.log('Mongoose connection closing');
-      Mongoose.connection.close()
+      Mongoose.connection.close();
     });
+
 };
 
 DbSeed();
+
+module.exports = DbSeed;
 
 
