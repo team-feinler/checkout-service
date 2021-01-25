@@ -19,7 +19,7 @@ const CreateFakeData = () => {
   let productsToSave = []
 
   for (let i = 0; i < numberOfProducts; i++) {
-    let productId = i + 1;
+    let productId = i + 1000;
     let inventory;
     // Creating an arbitrary index of centsForPrice to add realistic prices with cents to products
     let centsIndex = Math.floor(Math.random() * Math.floor(centsForPrice.length));
