@@ -13,7 +13,7 @@ app.get('/priceandinventory/id/:productId', (req, res) => {
   dbQuery.getProductPriceAndInventoryCount(productId)
   .then((productInfo) => {
     // Function returns stringified empty array '[]' which has length of 2
-    if (productInfo.length === 2) {
+    if (!productInfo.length) {
       res.status(404).send('Invalid product id');
     } else {
       res.status(200).send(productInfo);
@@ -27,7 +27,7 @@ app.post('/priceandinventory/id/multiple', (req, res) => {
     res.status(400).end();
   } else {
     dbQuery.getMultipleProductsPriceAndInventoryCount(productIds)
-    .then(productsInfo => res.status(200).send(JSON.stringify(productsInfo)));
+    .then(productsInfo => res.status(200).send(productsInfo));
   }
 });
 

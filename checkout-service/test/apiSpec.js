@@ -1,4 +1,4 @@
-const chai = require('chai'), chaiHttp = require('chai-http');
+const chai = require('chai'), chaiHttp = require('chai-http'), { expect } = require('chai');
 const app = require('../server/index.js');
 
 chai.use(chaiHttp);
@@ -20,8 +20,12 @@ describe('API calls', () => {
       it('should get a product\'s price and inventory count', (done) => {
         requester.get(`/priceandinventory/id/${id}`)
           .end((err, res) => {
+            let parsedResponse = JSON.parse(res.text);
             res.should.have.status(200);
-            res.body.should.be.a('object');
+            res.body.should.be.a('array');
+            expect(res.body[0].id).to.equal(1000);
+            expect(res.body[0]).to.have.property('price');
+            expect(res.body[0]).to.have.property('inventory');
             done();
           });
       });
@@ -44,7 +48,11 @@ describe('API calls', () => {
           .send(ids)
           .end((err, res) => {
             res.should.have.status(200);
-            res.body.should.be.a('object');
+            res.body.should.be.a('array');
+            expect(res.body).to.have.length(4);
+            expect(res.body[0].id).to.equal(1000);
+            expect(res.body[0]).to.have.property('price');
+            expect(res.body[0]).to.have.property('inventory');
             done();
           });
       });
