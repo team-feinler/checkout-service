@@ -10,6 +10,7 @@
   "scripts": {
     "seed": "node database/seed/populate.js",
     "test": "mocha --file test/setup.js --exit",
+    "test-react": "jest",
     "testDb": "node ./spec/db/dbSpec.js",
     "start": "node ./server/index.js",
     "react-dev": "webpack --mode=development --watch"
@@ -29,13 +30,19 @@
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.12.10",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.4.1",
+    "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",
     "babel-plugin-styled-components": "^1.12.0",
     "chai": "^4.2.0",
+    "enzyme": "^3.11.0",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "jest": "^26.6.3",
+    "jsdom": "^16.4.0",
     "mocha": "^8.2.1",
     "mocha-suppress-logs": "^0.2.0",
     "nodemon": "^2.0.7",
+    "react-test-renderer": "^17.0.1",
     "webpack": "^5.13.0",
     "webpack-cli": "^4.3.1"
   }
