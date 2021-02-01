@@ -15,7 +15,7 @@ module.exports = {
     ]
   },
   output: {
-    filename: 'bundle.js',
+    filename: 'checkout_bundle.js',
     path: __dirname + '/client/dist'
   }
 };
