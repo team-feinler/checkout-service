@@ -33,7 +33,7 @@ export default class Checkout extends React.Component {
 
   componentDidMount() {
     let url = window.location.href;
-    let productId = url.split('/')[3];
+    let productId = url.split('/')[3] || 1000;
     fetch(`http://localhost:4003/priceandinventory/id/${productId}`)
     .then((res) => res.json())
     .then((res) => {
