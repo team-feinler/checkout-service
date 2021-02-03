@@ -1,12 +1,21 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const port = 4003;
 const app = express();
 const dbQuery = require('../database/query.js');
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static(__dirname + '/../client/dist'));
+app.use(express.static(__dirname + '/../public'));
+app.use('/:id', express.static(__dirname + '/../public'));
+
+var corsOptions = {
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200
+};
+
 
 app.get('/priceandinventory/id/:productId', (req, res) => {
   let productId = req.params.productId;
