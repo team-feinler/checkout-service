@@ -63,7 +63,8 @@ const PriceDeliveryAndStock = (props) => (
   <div>
     <div style={{marginBottom: "10px"}}>
       <Price>${props.price}</Price>
-      <img style={{width: "50px", height: "auto"}} src='https://m.media-amazon.com/images/G/01/AmazonServices/Site/US/Product/FBA/small-and-light-prime-logo._V509606070_.png'></img><GreyInlineText> FREE One-Day</GreyInlineText>
+      <img style={{width: "50px", height: "auto"}} src='https://m.media-amazon.com/images/G/01/AmazonServices/Site/US/Product/FBA/small-and-light-prime-logo._V509606070_.png'></img>
+      <GreyInlineText> FREE One-Day</GreyInlineText>
       <div>
         <InlineText>& </InlineText><BlueInlineText>FREE Returns <sup>&#8744;</sup></BlueInlineText>
       </div>

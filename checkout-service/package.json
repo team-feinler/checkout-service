@@ -13,7 +13,8 @@
     "test-react": "jest",
     "testDb": "node ./spec/db/dbSpec.js",
     "start": "node ./server/index.js",
-    "react-dev": "webpack --mode=development --watch"
+    "react-dev": "webpack --mode=development --watch",
+    "react-production": "webpack --mode=production"
   },
   "dependencies": {
     "chai-http": "^4.3.0",

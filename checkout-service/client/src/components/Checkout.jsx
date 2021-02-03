@@ -13,10 +13,10 @@ import {
 
 
 const CheckoutWrapper = styled.div`
-  width: 242px;
-  max-width: 242px;
+  width: 273px;
+  max-width: 273px;
   border: 1px solid #D5D9D9;
-  border-radius: 8px;
+  border-radius: 0px;
   padding: 14px 18px;
 `;
 
@@ -24,7 +24,7 @@ export default class Checkout extends React.Component {
   constructor (props) {
     super (props);
     this.state = {
-      productId: 1001,
+      productId: null,
       price: null,
       inventory: null
     };
@@ -32,13 +32,15 @@ export default class Checkout extends React.Component {
 
 
   componentDidMount() {
-    fetch(`http://localhost:4003/priceandinventory/id/${this.state.productId}`)
+    let url = window.location.href;
+    let productId = url.split('/')[3];
+    fetch(`http://localhost:4003/priceandinventory/id/${productId}`)
     .then((res) => res.json())
     .then((res) => {
-      // console.log('price: ', res[0].price, 'inventory: ', res[0].inventory);
       let productPrice = res[0].price;
       let productInventory = res[0].inventory;
       this.setState({
+        productId: productId,
         price: productPrice,
         inventory: productInventory
       });
