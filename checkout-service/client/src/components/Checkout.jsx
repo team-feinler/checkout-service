@@ -11,6 +11,9 @@ import {
   SecureTransactionAndSellerDetails
 } from './CheckoutDetails.jsx';
 
+// For testing purposes
+import fetch from 'node-fetch';
+
 
 const CheckoutWrapper = styled.div`
   width: 273px;
