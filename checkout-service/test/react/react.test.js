@@ -45,5 +45,4 @@ describe("Checkout PriceDeliveryAndStock component", () => {
     expect(wrapper.contains('Currently unavailble.')).toEqual(true);
     expect(wrapper.contains('In Stock.')).toEqual(false);
   });
-
 });
