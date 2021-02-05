@@ -12,7 +12,7 @@ import {
   Stock,
   smallerPadding,
   lineStyle
-} from '../styles.js';
+} from '../styles.js'
 
 
 
