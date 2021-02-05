@@ -1,62 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import faker from 'faker';
-
-const Text = styled.span`
-  font-family: "Amazon Ember",Arial,sans-serif;
-  font-size: 14px;
-  display: block;
-  line-height: 24px;
-`;
-
-const InlineText = styled(Text)`
-  display: inline;
-`;
-
-const Price = styled(Text)`
-  font-size: 18px;
-  color: #B12704;
-`;
-
-const GreyText = styled(Text)`
-  color: #565959;
-`;
-
-const GreyInlineText = styled(Text)`
-  color: #565959;
-  display: inline;
-`;
-
-const BlueText = styled(Text)`
-  color: #007185;
-`;
-
-const BlueInlineText = styled(Text)`
-  color: #007185;
-  display: inline;
-`;
-
-// const div style = styled.div`
-//   margin-bottom: 10px;
-// `;
+import {
+  Text,
+  InlineText,
+  Price,
+  GreyText,
+  GreyInlineText,
+  BlueText,
+  BlueInlineText,
+  Stock,
+  smallerPadding,
+  lineStyle
+} from '../styles.js';
 
 
-
-const Stock = styled.span`
-  font-family: "Amazon Ember", Arial, sans-serif;
-  /* color: ${props => props.inventory ? "#007600" : "#B12704"}; */
-  font-size: 18px;
-  line-height: 24px;
-  margin-bottom: 10px;
-`;
-
-const smallerPadding = {
-  lineHeight: "20px"
-};
-
-const lineStyle = {
-  borderTop: "1px solid #D5D9D9"
-}
 
 
 const PriceDeliveryAndStock = (props) => (
@@ -66,7 +24,7 @@ const PriceDeliveryAndStock = (props) => (
       <img style={{width: "50px", height: "auto"}} src='https://m.media-amazon.com/images/G/01/AmazonServices/Site/US/Product/FBA/small-and-light-prime-logo._V509606070_.png'></img>
       <GreyInlineText> FREE One-Day</GreyInlineText>
       <div>
-        <InlineText>& </InlineText><BlueInlineText>FREE Returns <sup>&#8744;</sup></BlueInlineText>
+        <InlineText>& </InlineText><BlueInlineText>FREE Returns &#8744;</BlueInlineText>
       </div>
     </div>
     <div style={{marginBottom: "20px"}}>
@@ -79,11 +37,121 @@ const PriceDeliveryAndStock = (props) => (
   </div>
 );
 
-const QuantityDropDown = (props) => (
-  <div>
-    <h2>QuantityDropDown</h2>
+
+const QtyButton = styled.div`
+  margin-top: 10px;
+  height: 20px;
+  width: 61px;
+  border: 1px solid black;
+  line-height: 20px;
+  border-radius: 8px;
+  border-color: #D5D9D9;
+  background: #F0F2F2;
+  border-style: solid;
+  border-width: 1px;
+  &:hover {
+    background: #e7e9ec;
+  }
+`;
+
+const QtyButtonText = styled.span`
+  font-family: "Amazon Ember",Arial,sans-serif;
+  font-size: 13px;
+  padding-left: 6px;
+  &:hover {
+
+  }
+`;
+
+const QtyDropDownWrapper = styled.div`
+  width: 61px;
+  margin: 0 auto;
+  position: absolute;
+  cursor: pointer;
+`;
+
+const QtyDropDownList = styled.ul`
+  padding: 0;
+  margin: 0;
+  background: #ffffff;
+  border: 2px solid #e5e5e5;
+  box-sizing: border-box;
+  font-size: 1.3rem;
+  font-weight: 500;
+  border-radius: 0 0 5px 5px;
+  &:first-child {
+    padding-top: 0.2em;
+    border-top-style: none;
+  }
+
+`;
+
+const QtyDropDownListItem = styled.li`
+  font-family: "Amazon Ember",Arial,sans-serif;
+  font-size: 14px;
+  list-style: none;
+  height: 25px;
+  padding-left: .8em;
+
+  &:hover {
+    background-color: #F0F2F2 !important;
+  }
+`;
+
+const firstItemStyle = {
+  borderTopStyle: "solid",
+  borderBottomStyle: "none",
+  height: "34px",
+  width: "61px",
+  paddingTop: "0.5em",
+  marginTop: "10px",
+  borderRadius: "5px 5px 0 0"
+};
+
+const selectedQtyStyle = {
+  backgroundColor: "#EDFDFF"
+}
+
+
+
+
+const QuantityDropDown = (props) => {
+  const [quantity, setQuantity] = useState(1);
+  const [dropDown, setDropDown] = useState(false);
+
+  const renderQtyNumbers = () => {
+    let maxDropDownNumber = props.inventory > 6 ? 6 : props.inventory;
+    let qtyNumbersElements = [];
+      for (let i = 0; i < maxDropDownNumber; i++) {
+        qtyNumbersElements.push(<QtyDropDownListItem style={quantity == i + 2 ? selectedQtyStyle : null} onClick={(e) => {setDropDown(false); setQuantity(e.target.innerHTML)}} key={i + 2}>{i + 2}</QtyDropDownListItem>)
+      }
+      return qtyNumbersElements;
+  }
+
+  let button = <QtyButton onClick={() => setDropDown(true)}>
+        <QtyButtonText>
+          Qty:  {quantity} <span style={{marginLeft: "2px"}}>&#8744;</span>
+        </QtyButtonText>
+    </QtyButton>
+
+  let dropDownElement = <div>
+    <QtyDropDownList style={firstItemStyle} onClick={(e) => {setDropDown(false); setQuantity(e.target.innerHTML)}}>
+        <QtyDropDownListItem style={quantity == 1 ? selectedQtyStyle : null}>1</QtyDropDownListItem>
+    </QtyDropDownList>
+
+    <QtyDropDownWrapper>
+        <QtyDropDownList>
+          {renderQtyNumbers()}
+        </QtyDropDownList>
+    </QtyDropDownWrapper>
   </div>
-);
+
+  if (!dropDown) {
+    return button;
+  } else {
+    return dropDownElement;
+  }
+};
 
 const AddToCartButton = (props) => (
   <div>

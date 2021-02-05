@@ -60,7 +60,7 @@ export default class Checkout extends React.Component {
         <PriceDeliveryAndStock {...propsToPass} />
         {this.state.inventory ?
         <div>
-          <QuantityDropDown />
+          <QuantityDropDown inventory={this.state.inventory}/>
           <AddToCartButton />
           <BuyNowButton />
           <SecureTransactionAndSellerDetails />
