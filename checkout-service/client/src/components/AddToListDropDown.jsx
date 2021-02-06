@@ -70,6 +70,9 @@ const ListItem = styled("li")`
   list-style: none;
   height: 29px;
   margin: 0.2em 0 0.2em 0;
+  &:hover{
+    background-color: #e2e5ea;
+  }
 `;
 
 const ListItemImgWrapper = styled.span`
