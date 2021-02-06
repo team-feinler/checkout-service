@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import faker from 'faker';
 import PriceDeliveryAndStock from '../components/PriceDeliveryAndStock.jsx';
 import QuantityDropDown from '../components/QuantityDropDown.jsx';
-import { AddToCartButton, BuyNowButton } from '../components/AddToCartButton.jsx';
+import { AddToCartButton, BuyNowButton } from '../components/Buttons.jsx';
+import SecureTransactionAndSellerDetails from '../components/SecureTransactionAndSellerDetails.jsx';
 
 const lineStyle = {
   borderTop: "1px solid #D5D9D9"
@@ -21,11 +22,11 @@ const lineStyle = {
 //   </div>
 // );
 
-const SecureTransactionAndSellerDetails = (props) => (
-  <div>
-  <h2>SecureTransaction...</h2>
-</div>
-)
+// const SecureTransactionAndSellerDetails = (props) => (
+//   <div>
+//   <h2>SecureTransaction...</h2>
+// </div>
+// )
 
 const AddToListDropdown = (props) => (
   <div style={lineStyle}>
