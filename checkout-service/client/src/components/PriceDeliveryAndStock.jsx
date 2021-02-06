@@ -46,8 +46,23 @@ const smallerPadding = {
   lineHeight: "20px"
 };
 
-const PriceDeliveryAndStock = (props) => (
-  <div>
+
+const PriceDeliveryAndStock = (props) => {
+
+  let now = new Date();
+  let night = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0);
+  let minTillMidnight = (night.getTime() - now.getTime()) / 1000 / 60;
+  let hours = 0;
+  for (let i = 0; i < 24; i++) {
+    if (minTillMidnight >= 60) {
+      minTillMidnight = minTillMidnight - 60;
+      hours++;
+    } else {
+      break;
+    }
+  };
+
+  return <div>
     <div style={{marginBottom: "10px"}}>
       <Price>${props.price}</Price>
       <img style={{width: "50px", height: "auto"}} src='https://m.media-amazon.com/images/G/01/AmazonServices/Site/US/Product/FBA/small-and-light-prime-logo._V509606070_.png'></img>
@@ -58,13 +73,13 @@ const PriceDeliveryAndStock = (props) => (
     </div>
     <div style={{marginBottom: "20px"}}>
       <Text style={smallerPadding}>FREE delivery: <strong>Tomorrow</strong></Text>
-      <GreyText style={smallerPadding}>Order within 'hours remaining'</GreyText>
+      <GreyText style={smallerPadding}>Order within {hours === 1 ? `${hours} hour and ${Math.round(minTillMidnight)} minutes` : `${hours} hours and ${Math.round(minTillMidnight)} minutes`}</GreyText>
       <BlueText style={smallerPadding}>Details</BlueText>
     </div>
     <Stock style={props.inventory ? {color: "#007600"} : {color: "#B12704"}}>{props.inventory ? "In Stock." : "Currently unavailble."}</Stock>
     {!props.inventory ? <Text style={{lineHeight: "20px"}}>We don't know when this item will be back in stock.</Text> : null}
   </div>
-);
+};
 
 export default PriceDeliveryAndStock;
 

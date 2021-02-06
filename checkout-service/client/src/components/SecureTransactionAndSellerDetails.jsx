@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import faker from 'faker';
 
 const SecureTransactionAndSellerDetailsWrapper = styled.div`
   margin-top: 15px;
@@ -41,7 +42,7 @@ const SecureTransactionAndSellerDetails = (props) => (
           <SellerDetailsTitle>Ships from</SellerDetailsTitle>
         </td>
         <td>
-          <SellerDetails>Amazon.com Services LLC</SellerDetails>
+          <SellerDetails>{faker.company.companyName()}</SellerDetails>
         </td>
       </tr>
       <tr>
@@ -49,7 +50,7 @@ const SecureTransactionAndSellerDetails = (props) => (
           <SellerDetailsTitle>Sold By</SellerDetailsTitle>
         </td>
         <td>
-          <SellerDetails>Amazon.com Services LLC</SellerDetails>
+          <SellerDetails>{faker.company.companyName()}</SellerDetails>
         </td>
       </tr>
     </tbody>

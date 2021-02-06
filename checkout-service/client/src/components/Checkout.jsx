@@ -56,9 +56,9 @@ export default class Checkout extends React.Component {
   render () {
 
     let propsToPass = { price: this.state.price, inventory: this.state.inventory }
-
+    // Original heigth 655px
     return (
-      <CheckoutWrapper style={this.state.inventory ? {height: "655px"} : {height: "auto"}}>
+      <CheckoutWrapper style={this.state.inventory ? {height: "470px"} : {height: "auto"}}>
         <PriceDeliveryAndStock {...propsToPass} />
         {this.state.inventory ?
         <div>
