@@ -8,7 +8,7 @@ import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 configure({ adapter: new Adapter() });
 
 import Checkout from '../../client/src/components/Checkout.jsx';
-import { PriceDeliveryAndStock } from '../../client/src/components/CheckoutDetails.jsx';
+import PriceDeliveryAndStock from '../../client/src/components/PriceDeliveryAndStock.jsx';
 
 describe("Checkout component", () => {
   test("renders", () => {

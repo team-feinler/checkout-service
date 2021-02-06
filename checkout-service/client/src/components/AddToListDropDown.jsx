@@ -56,44 +56,85 @@ const DropDownListContainer = styled("div")``;
 const DropDownList = styled("ul")`
   padding: 0;
   margin: 0;
-  padding-left: 1em;
   background: #ffffff;
-  border: 2px solid #e5e5e5;
+  border: 1px solid #e5e5e5;
   box-sizing: border-box;
-  color: #3faffa;
   font-size: 1.3rem;
   font-weight: 500;
   &:first-child {
     margin-top: 0.1em;
-    /* padding-top: 0.8em; */
   }
 `;
 
 const ListItem = styled("li")`
   list-style: none;
-  /* margin-bottom: 0.8em; */
   height: 29px;
-  border: 1px solid black;
+  margin: 0.2em 0 0.2em 0;
 `;
+
+const ListItemImgWrapper = styled.span`
+  height: 29px;
+  margin: 0 8px 0 8px;
+`;
+
+const ListItemImg = styled.img`
+  height: 22px;
+  width: 30px;
+
+`;
+
+const ListItemTextWrapper = styled.div`
+  height: 29px;
+  display: inline-block;
+`;
+
+const ListItemLabel = styled.span`
+  font-size: 12px;
+  height: 14px;
+  line-height: 14px;
+  display: block;
+`;
+
+const ListItemStatus = styled.span`
+  font-size: 12px;
+  height: 14px;
+  line-height: 14px;
+  display: block;
+  color: #565959;
+`;
+
+const generateListItems = () => {
+  let randomNumOfLists = Math.floor(Math.random() * (5 - 1) + 1);
+  let listStatus = ['public', 'private'];
+  let listItems = [];
+  for (let i = 0; i < randomNumOfLists; i++) {
+    let randomPrivateOrPublicIndex = Math.floor(Math.random() * Math.floor(2));
+    listItems.push(<ListItem><ListItemImgWrapper><ListItemImg src={faker.image.imageUrl()}></ListItemImg></ListItemImgWrapper><ListItemTextWrapper><ListItemLabel>{faker.random.word()}</ListItemLabel><ListItemStatus>{listStatus[randomPrivateOrPublicIndex]}</ListItemStatus></ListItemTextWrapper></ListItem>);
+  };
+  return listItems;
+};
+
+const generatedListItems = generateListItems();
 
 const AddToListDropDown = (props) => {
   const [dropDown, setDropDown] = useState(false);
   const toggleDropDown = () => setDropDown(!dropDown);
 
   return <AddToListDropDownWrapper>
-    <AddToListSection>Add to List</AddToListSection>
-    <DropDownArrowSection onFocus={toggleDropDown} onBlur={toggleDropDown} tabIndex="0"><DropDownArrowIcon></DropDownArrowIcon></DropDownArrowSection>
+    <AddToListSection>
+      Add to List
+    </AddToListSection>
+    <DropDownArrowSection onFocus={toggleDropDown} onBlur={toggleDropDown} tabIndex="0">
+      <DropDownArrowIcon></DropDownArrowIcon>
+    </DropDownArrowSection>
     {dropDown && (
       <DropDownListContainer>
         <DropDownList>
-          <ListItem>Mangoes</ListItem>
-          <ListItem>Apples</ListItem>
-          <ListItem>Oranges</ListItem>
+          {generatedListItems}
         </DropDownList>
       </DropDownListContainer>
     )}
   </AddToListDropDownWrapper>
-
 };
 
 export default AddToListDropDown;
