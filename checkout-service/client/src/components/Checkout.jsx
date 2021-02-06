@@ -3,14 +3,11 @@ import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import faker from 'faker';
 import fetch from 'node-fetch';
-import {
-  PriceDeliveryAndStock,
-  QuantityDropDown,
-  AddToCartButton,
-  BuyNowButton,
-  AddToListDropdown,
-  SecureTransactionAndSellerDetails
-} from './CheckoutDetails.jsx';
+import PriceDeliveryAndStock from '../components/PriceDeliveryAndStock.jsx';
+import QuantityDropDown from '../components/QuantityDropDown.jsx';
+import { AddToCartButton, BuyNowButton } from '../components/Buttons.jsx';
+import SecureTransactionAndSellerDetails from '../components/SecureTransactionAndSellerDetails.jsx';
+import AddToListDropDown from '../components/AddToListDropDown.jsx';
 
 const CheckoutWrapper = styled.div`
   width: 235px;
@@ -19,6 +16,15 @@ const CheckoutWrapper = styled.div`
   border-radius: 0px;
   padding: 14px 18px;
 `;
+
+const lineStyle = {
+  margin: "10px 0 10px 0",
+  borderTop: "1px solid #D5D9D9"
+};
+
+const Line = (props) => (
+  <div style={lineStyle}></div>
+)
 
 
 export default class Checkout extends React.Component {
@@ -64,7 +70,8 @@ export default class Checkout extends React.Component {
         :
         null
         }
-        <AddToListDropdown />
+        <Line />
+        <AddToListDropDown />
       </CheckoutWrapper>
     );
   }

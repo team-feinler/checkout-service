@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-// PriceDeliveryAndStock
 const Text = styled.span`
   font-family: "Amazon Ember",Arial,sans-serif;
   font-size: 14px;
@@ -38,7 +37,6 @@ const BlueInlineText = styled(Text)`
 
 const Stock = styled.span`
   font-family: "Amazon Ember", Arial, sans-serif;
-  /* color: ${props => props.inventory ? "#007600" : "#B12704"}; */
   font-size: 18px;
   line-height: 24px;
   margin-bottom: 10px;

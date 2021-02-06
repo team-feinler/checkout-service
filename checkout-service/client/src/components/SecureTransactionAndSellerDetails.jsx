@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const SecureTransactionAndSellerDetailsWrapper = styled.div`
   margin-top: 15px;
+  cursor: pointer;
 `;
 
 const Text = styled.span`
