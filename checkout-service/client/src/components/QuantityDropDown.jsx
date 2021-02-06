@@ -13,6 +13,7 @@ background: #F0F2F2;
 border-style: solid;
 border-width: 1px;
 box-shadow: 0 2px 5px rgb(15 17 17 / 15%);
+cursor: pointer;
 &:hover {
   background: #e7e9ec;
 }`;
@@ -30,6 +31,7 @@ width: 61px;
 margin: 0 auto;
 position: absolute;
 cursor: pointer;
+z-index: 1000;
 `;
 
 const QtyDropDownList = styled.ul`
@@ -84,11 +86,11 @@ const QuantityDropDown = (props) => {
       return qtyNumbersElements;
   }
 
-  let button = <QtyButton onClick={() => setDropDown(true)}>
+  let button = <div style={{height: "34px"}}><QtyButton onClick={() => setDropDown(true)}>
         <QtyButtonText>
           Qty:  {quantity} <span style={{marginLeft: "2px"}}>&#8744;</span>
         </QtyButtonText>
-    </QtyButton>
+    </QtyButton></div>
 
   let dropDownElement = <div>
     <QtyDropDownList style={firstItemStyle} onClick={(e) => {setDropDown(false); setQuantity(e.target.innerHTML)}}>

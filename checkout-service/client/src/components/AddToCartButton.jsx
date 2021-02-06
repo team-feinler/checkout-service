@@ -6,7 +6,7 @@ const ButtonWrapper = styled.div`
   font-size: 13px;
   line-height: 29px;
   border: 1px solid;
-  margin-top: 20px;
+  margin-top: 13px;
   height: 29px;
   border-radius: 3px;
   cursor: pointer;

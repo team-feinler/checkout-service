@@ -13,8 +13,8 @@ import {
 } from './CheckoutDetails.jsx';
 
 const CheckoutWrapper = styled.div`
-  width: 273px;
-  max-width: 273px;
+  width: 235px;
+  max-width: 235px;
   border: 1px solid #D5D9D9;
   border-radius: 0px;
   padding: 14px 18px;
