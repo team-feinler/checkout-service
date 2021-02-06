@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import faker from 'faker';
+import fetch from 'node-fetch';
 import {
   PriceDeliveryAndStock,
   QuantityDropDown,
@@ -11,10 +12,6 @@ import {
   SecureTransactionAndSellerDetails
 } from './CheckoutDetails.jsx';
 
-// For testing purposes
-import fetch from 'node-fetch';
-
-
 const CheckoutWrapper = styled.div`
   width: 273px;
   max-width: 273px;
@@ -22,6 +19,7 @@ const CheckoutWrapper = styled.div`
   border-radius: 0px;
   padding: 14px 18px;
 `;
+
 
 export default class Checkout extends React.Component {
   constructor (props) {
@@ -32,7 +30,6 @@ export default class Checkout extends React.Component {
       inventory: null
     };
   }
-
 
   componentDidMount() {
     let url = window.location.href;
@@ -49,7 +46,6 @@ export default class Checkout extends React.Component {
       });
     })
   }
-
 
   render () {
 
