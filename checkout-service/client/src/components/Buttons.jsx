@@ -38,7 +38,6 @@ const AddtoCartBtnIcon = styled(Icon)`
   background-position: -35px -5px;
 `;
 
-
 const AddToCartButton = (props) => (
   <AddToCartBtnWrapper>
     <AddtoCartBtnIcon></AddtoCartBtnIcon>
@@ -60,7 +59,6 @@ const BuyNowBtnIcon = styled(Icon)`
   background-image: url("https://m.media-amazon.com/images/S/sash/McBZv0ZvnbehkIx.png");
   background-position: -35px -60px;
 `;
-
 
 const BuyNowButton = (props) => (
   <BuyNowBtnWrapper>

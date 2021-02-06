@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
-import faker from 'faker';
 import fetch from 'node-fetch';
 import PriceDeliveryAndStock from '../components/PriceDeliveryAndStock.jsx';
 import QuantityDropDown from '../components/QuantityDropDown.jsx';
