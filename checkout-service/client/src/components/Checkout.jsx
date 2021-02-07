@@ -1,27 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
-import faker from 'faker';
-import {
-  PriceDeliveryAndStock,
-  QuantityDropDown,
-  AddToCartButton,
-  BuyNowButton,
-  AddToListDropdown,
-  SecureTransactionAndSellerDetails
-} from './CheckoutDetails.jsx';
-
-// For testing purposes
 import fetch from 'node-fetch';
-
+import PriceDeliveryAndStock from '../components/PriceDeliveryAndStock.jsx';
+import QuantityDropDown from '../components/QuantityDropDown.jsx';
+import { AddToCartButton, BuyNowButton } from '../components/Buttons.jsx';
+import SecureTransactionAndSellerDetails from '../components/SecureTransactionAndSellerDetails.jsx';
+import AddToListDropDown from '../components/AddToListDropDown.jsx';
 
 const CheckoutWrapper = styled.div`
-  width: 273px;
-  max-width: 273px;
+  width: 235px;
+  max-width: 235px;
   border: 1px solid #D5D9D9;
   border-radius: 0px;
   padding: 14px 18px;
 `;
+
+const lineStyle = {
+  margin: "10px 0 10px 0",
+  borderTop: "1px solid #D5D9D9"
+};
+
+const Line = (props) => (
+  <div style={lineStyle}></div>
+)
+
 
 export default class Checkout extends React.Component {
   constructor (props) {
@@ -32,7 +35,6 @@ export default class Checkout extends React.Component {
       inventory: null
     };
   }
-
 
   componentDidMount() {
     let url = window.location.href;
@@ -50,17 +52,15 @@ export default class Checkout extends React.Component {
     })
   }
 
-
   render () {
-
-    let propsToPass = { price: this.state.price, inventory: this.state.inventory }
+    let propsToPass = { price: this.state.price, inventory: this.state.inventory };
 
     return (
-      <CheckoutWrapper style={this.state.inventory ? {height: "655px"} : {height: "auto"}}>
+      <CheckoutWrapper style={this.state.inventory ? {height: "470px"} : {height: "auto"}}>
         <PriceDeliveryAndStock {...propsToPass} />
         {this.state.inventory ?
         <div>
-          <QuantityDropDown />
+          <QuantityDropDown inventory={this.state.inventory}/>
           <AddToCartButton />
           <BuyNowButton />
           <SecureTransactionAndSellerDetails />
@@ -68,7 +68,8 @@ export default class Checkout extends React.Component {
         :
         null
         }
-        <AddToListDropdown />
+        <Line />
+        <AddToListDropDown />
       </CheckoutWrapper>
     );
   }
