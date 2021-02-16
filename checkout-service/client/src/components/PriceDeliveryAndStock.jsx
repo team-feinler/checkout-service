@@ -73,7 +73,7 @@ const PriceDeliveryAndStock = (props) => {
     </div>
     <div style={{marginBottom: "20px"}}>
       <Text style={smallerPadding}>FREE delivery: <strong>Tomorrow</strong></Text>
-      <GreyText style={smallerPadding}>Order within {hours === 1 ? `${hours} hour and ${Math.round(minTillMidnight)} minutes` : `${hours} hours and ${Math.round(minTillMidnight)} minutes`}</GreyText>
+      <GreyText style={smallerPadding}>Order within {hours === 1 ? `${hours} hr and ${Math.round(minTillMidnight)} mins` : `${hours} hrs and ${Math.round(minTillMidnight)} mins`}</GreyText>
       <BlueText style={smallerPadding}>Details</BlueText>
     </div>
     <Stock style={props.inventory ? {color: "#007600"} : {color: "#B12704"}}>{props.inventory ? "In Stock." : "Currently unavailble."}</Stock>
