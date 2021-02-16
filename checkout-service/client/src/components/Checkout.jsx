@@ -9,8 +9,8 @@ import SecureTransactionAndSellerDetails from '../components/SecureTransactionAn
 import AddToListDropDown from '../components/AddToListDropDown.jsx';
 
 const CheckoutWrapper = styled.div`
-  width: 235px;
-  max-width: 235px;
+  width: 215px;
+  max-width: 215px;
   border: 1px solid #D5D9D9;
   border-radius: 8px;
   padding: 14px 18px;
