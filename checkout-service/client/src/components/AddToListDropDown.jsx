@@ -4,12 +4,11 @@ import faker from 'faker';
 
 const AddToListDropDownWrapper = styled.div`
   background-color: #E7E9EC;
-  border: 1px solid;
+  border: 1px solid !important;
   border-color: #adb1b8 !important;
   font-family: "Amazon Ember",Arial,sans-serif;
   font-size: 13px;
   line-height: 29px;
-  border: 1px solid;
   margin-top: 13px;
   height: 29px;
   border-radius: 3px;
@@ -30,8 +29,9 @@ const AddToListSection = styled.span`
 
 const DropDownArrowSection = styled.span`
   position: absolute;
-  width: 26px;
+  width: 25px;
   height: 29px;
+  border-radius: 0px 3px 3px 0px;
   &:hover {
     background-color: #e2e5ea;
   };
