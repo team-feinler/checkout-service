@@ -17,6 +17,9 @@ const SecureTransactionText = styled(Text)`
   text-transform: normal;
   color: #007185;
   margin-left: 15px;
+  &:hover{
+    color: #C7511F
+  }
 `;
 
 const SellerDetailsTitle = styled(Text)`

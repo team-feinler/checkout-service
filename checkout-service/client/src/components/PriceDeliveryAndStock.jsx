@@ -28,11 +28,21 @@ const GreyInlineText = styled(Text)`
 
 const BlueText = styled(Text)`
   color: #007185;
+  cursor: pointer;
+  &:hover{
+    color: #C7511F;
+    text-decoration: underline;
+  }
 `;
 
 const BlueInlineText = styled(Text)`
   color: #007185;
   display: inline;
+  cursor: pointer;
+  &:hover{
+    color: #C7511F;
+    text-decoration: underline;
+  }
 `;
 
 const Stock = styled.span`
