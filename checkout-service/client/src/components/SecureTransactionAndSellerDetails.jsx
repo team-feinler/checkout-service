@@ -33,11 +33,29 @@ const SellerDetails = styled(Text)`
   margin-left: 10px;
 `;
 
+const SecureTransactionPopover = styled.div`
+  position: absolute;
+  margin-top: 12px;
+  border: 1px black solid;
+  width: 384px;
+  height: 204px;
+  padding-left: 10px;
+`;
 
-const SecureTransactionAndSellerDetails = (props) => (
+const Triangle = styled.div`
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 7px solid;
+
+`;
+
+const SecureTransactionAndSellerDetails = (props) => (<div>
   <SecureTransactionAndSellerDetailsWrapper>
   <img style={{height: "15px", verticalAlign: "top"}} src="https://images-na.ssl-images-amazon.com/images/G/01/x-locale/checkout/truespc/secured-ssl._CB485936932_.png"></img>
   <SecureTransactionText>Secure Transaction</SecureTransactionText>
+  <SecureTransactionPopover><Triangle></Triangle></SecureTransactionPopover>
   <table style={{marginTop: "8px"}}>
     <tbody>
       <tr>
@@ -59,6 +77,7 @@ const SecureTransactionAndSellerDetails = (props) => (
     </tbody>
   </table>
   </SecureTransactionAndSellerDetailsWrapper>
+  </div>
 )
 
 export default SecureTransactionAndSellerDetails;
