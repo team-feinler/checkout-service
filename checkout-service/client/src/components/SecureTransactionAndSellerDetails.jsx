@@ -25,12 +25,18 @@ const SecureTransactionText = styled(Text)`
 const SellerDetailsTitle = styled(Text)`
   font-size: 12px;
   color: #565959;
+  white-space: nowrap;
 `;
 
 const SellerDetails = styled(Text)`
   font-size: 12px;
   color: #0F1111;
   margin-left: 10px;
+  max-width: 140px;
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `;
 
 const SecureTransactionPopover = styled.div`
@@ -88,6 +94,7 @@ const X = styled(Text)`
 //   margin-left: 80%;
 //   margin-bottom: 10px;
 // `;
+let sellerDetails = {sellerDetail: faker.company.companyName(), sellerDetailTitle: faker.company.companyName()};
 
 const SecureTransactionAndSellerDetails = (props) => {
   const [popover, setPopover] = useState(false);
@@ -111,7 +118,7 @@ const SecureTransactionAndSellerDetails = (props) => {
             <SellerDetailsTitle>Ships from</SellerDetailsTitle>
           </td>
           <td>
-            <SellerDetails>{faker.company.companyName()}</SellerDetails>
+            <SellerDetails>{sellerDetails.sellerDetail}</SellerDetails>
           </td>
         </tr>
         <tr>
@@ -119,7 +126,7 @@ const SecureTransactionAndSellerDetails = (props) => {
             <SellerDetailsTitle>Sold By</SellerDetailsTitle>
           </td>
           <td>
-            <SellerDetails>{faker.company.companyName()}</SellerDetails>
+            <SellerDetails>{sellerDetails.sellerDetailTitle}</SellerDetails>
           </td>
         </tr>
       </tbody>
