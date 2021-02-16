@@ -14,7 +14,8 @@
     "testDb": "node ./spec/db/dbSpec.js",
     "start": "node ./server/index.js",
     "react-dev": "webpack --mode=development --watch",
-    "react-production": "webpack --mode=production"
+    "react-production": "webpack --mode=production",
+    "deploy": "./deploy.sh"
   },
   "dependencies": {
     "chai-http": "^4.3.0",
