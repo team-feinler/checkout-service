@@ -12,7 +12,7 @@ const CheckoutWrapper = styled.div`
   width: 235px;
   max-width: 235px;
   border: 1px solid #D5D9D9;
-  border-radius: 0px;
+  border-radius: 8px;
   padding: 14px 18px;
 `;
 
