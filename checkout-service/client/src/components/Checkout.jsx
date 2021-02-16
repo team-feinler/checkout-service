@@ -23,7 +23,7 @@ const lineStyle = {
 
 const Line = (props) => (
   <div style={lineStyle}></div>
-)
+);
 
 
 export default class Checkout extends React.Component {
