@@ -36,6 +36,7 @@ const SellerDetails = styled(Text)`
 const SecureTransactionPopover = styled.div`
   position: absolute;
   margin-top: 12px;
+  margin-left: -15%;
   border: 1px solid #cdcdcd;
   border-radius: 4px;
   width: 384px;
