@@ -58,7 +58,6 @@ const PopoverBoldText = styled(Text)`
   font-size: 14px;
   font-weight: 700;
   padding-left: 5%;
-  /* padding-top: 1.5em; */
 `;
 
 const RegularText = styled(Text)`
@@ -84,16 +83,6 @@ const X = styled(Text)`
   cursor: pointer;
 `;
 
-// const Triangle = styled.div`
-//   position: absolute;
-//   width: 0;
-//   height: 0;
-//   border-left: 8px solid transparent;
-//   border-right: 8px solid transparent;
-//   border-bottom: 7px solid;
-//   margin-left: 80%;
-//   margin-bottom: 10px;
-// `;
 let sellerDetails = {sellerDetail: faker.company.companyName(), sellerDetailTitle: faker.company.companyName()};
 
 const SecureTransactionAndSellerDetails = (props) => {
