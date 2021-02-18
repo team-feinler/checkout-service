@@ -4,7 +4,6 @@ import faker from 'faker';
 
 const SecureTransactionAndSellerDetailsWrapper = styled.div`
   margin-top: 15px;
-  cursor: pointer;
 `;
 
 const Text = styled.span`
@@ -17,8 +16,9 @@ const SecureTransactionText = styled(Text)`
   text-transform: normal;
   color: #007185;
   margin-left: 15px;
+  cursor: pointer;
   &:hover{
-    color: #C7511F
+    color: #C7511F;
   }
 `;
 
@@ -102,7 +102,7 @@ const SecureTransactionAndSellerDetails = (props) => {
 
   return <div>
     <SecureTransactionAndSellerDetailsWrapper>
-    <img style={{height: "15px", verticalAlign: "top"}} src="https://images-na.ssl-images-amazon.com/images/G/01/x-locale/checkout/truespc/secured-ssl._CB485936932_.png"></img>
+    <img onClick={() => togglePopover()} style={{height: "15px", verticalAlign: "top", cursor: "pointer"}} src="https://images-na.ssl-images-amazon.com/images/G/01/x-locale/checkout/truespc/secured-ssl._CB485936932_.png"></img>
     <SecureTransactionText onClick={() => togglePopover()}>Secure Transaction</SecureTransactionText>
     {popover && (
     <SecureTransactionPopover>

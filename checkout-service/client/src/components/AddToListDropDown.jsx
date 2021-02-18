@@ -29,7 +29,7 @@ const AddToListSection = styled.span`
 
 const DropDownArrowSection = styled.span`
   position: absolute;
-  width: 25px;
+  width: 24px;
   height: 29px;
   border-radius: 0px 3px 3px 0px;
   &:hover {
