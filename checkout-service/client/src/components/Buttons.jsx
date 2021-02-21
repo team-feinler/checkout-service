@@ -30,6 +30,8 @@ const AddToCartBtnWrapper = styled(ButtonWrapper)`
   border-color: #a88734 #9c7e31 #846a29;
   &:hover {
     border-color: #a88734 #9c7e31 #846a29;
+    background: rgb(224,180,69);
+    background: linear-gradient(0deg, rgba(224,180,69,1) 0%, rgba(240,193,75,1) 100%);
   }
 `;
 
@@ -52,6 +54,8 @@ const BuyNowBtnWrapper = styled(ButtonWrapper)`
   border-color: #ca7c1b #be751a #a56616;
   &:hover {
     border-color: #a88734 #9c7e31 #846a29;
+    background: rgb(223,138,30);
+    background: linear-gradient(0deg, rgba(223,138,30,1) 0%, rgba(237,146,32,1) 100%);
   }
 `;
 

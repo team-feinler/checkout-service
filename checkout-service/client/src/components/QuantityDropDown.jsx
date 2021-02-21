@@ -22,9 +22,7 @@ const QtyButtonText = styled.span`
 font-family: "Amazon Ember",Arial,sans-serif;
 font-size: 11.5px;
 padding-left: 6px;
-&:hover {
-
-}`;
+`;
 
 const QtyDropDownWrapper = styled.div`
 width: 61px;
