@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import faker from 'faker';
+import Chance from 'chance';
+const chance = new Chance();
 
 const SecureTransactionAndSellerDetailsWrapper = styled.div`
   margin-top: 15px;
@@ -83,7 +84,7 @@ const X = styled(Text)`
   cursor: pointer;
 `;
 
-let sellerDetails = {sellerDetail: faker.company.companyName(), sellerDetailTitle: faker.company.companyName()};
+let sellerDetails = {sellerDetail: chance.company(), sellerDetailTitle: chance.company()};
 
 const SecureTransactionAndSellerDetails = (props) => {
   const [popover, setPopover] = useState(false);

@@ -14,11 +14,12 @@
     "testDb": "node ./spec/db/dbSpec.js",
     "start": "node ./server/index.js",
     "react-dev": "webpack --mode=development --watch",
-    "react-production": "webpack --mode=production",
+    "build": "webpack --mode=production",
     "deploy": "./deploy.sh"
   },
   "dependencies": {
-    "chai-http": "^4.3.0",
+    "@babel/runtime": "^7.13.6",
+    "chance": "^1.1.7",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "faker": "^5.1.0",
@@ -26,12 +27,12 @@
     "node-fetch": "^2.6.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "sinon": "^9.2.4",
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
     "@babel/core": "^7.12.10",
+    "@babel/plugin-transform-runtime": "^7.13.6",
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.12.10",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.4.1",
@@ -39,6 +40,7 @@
     "babel-loader": "^8.2.2",
     "babel-plugin-styled-components": "^1.12.0",
     "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "enzyme": "^3.11.0",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "jest": "^26.6.3",
@@ -47,7 +49,9 @@
     "mocha-suppress-logs": "^0.2.0",
     "nodemon": "^2.0.7",
     "react-test-renderer": "^17.0.1",
+    "sinon": "^9.2.4",
     "webpack": "^5.13.0",
+    "webpack-bundle-analyzer": "^4.4.0",
     "webpack-cli": "^4.3.1"
   }
 }
