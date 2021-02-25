@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import faker from 'faker';
+import Chance from 'chance';
+const chance = new Chance();
 
 const AddToListDropDownWrapper = styled.div`
   background-color: #E7E9EC;
@@ -112,7 +113,7 @@ const generateListItems = () => {
   let listItems = [];
   for (let i = 0; i < randomNumOfLists; i++) {
     let randomPrivateOrPublicIndex = Math.floor(Math.random() * Math.floor(2));
-    listItems.push(<ListItem><ListItemImgWrapper><ListItemImg src={faker.image.imageUrl()}></ListItemImg></ListItemImgWrapper><ListItemTextWrapper><ListItemLabel>{faker.random.word()}</ListItemLabel><ListItemStatus>{listStatus[randomPrivateOrPublicIndex]}</ListItemStatus></ListItemTextWrapper></ListItem>);
+    listItems.push(<ListItem><ListItemImgWrapper><ListItemImg src={'https://placeimg.com/50/50'}></ListItemImg></ListItemImgWrapper><ListItemTextWrapper><ListItemLabel>{chance.word()}</ListItemLabel><ListItemStatus>{listStatus[randomPrivateOrPublicIndex]}</ListItemStatus></ListItemTextWrapper></ListItem>);
   };
   return listItems;
 };
