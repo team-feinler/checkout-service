@@ -84,7 +84,6 @@ const ListItemImgWrapper = styled.span`
 const ListItemImg = styled.img`
   height: 22px;
   width: 30px;
-
 `;
 
 const ListItemTextWrapper = styled.div`

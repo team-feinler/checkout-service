@@ -49,7 +49,7 @@ export default class Checkout extends React.Component {
         price: productPrice,
         inventory: productInventory
       });
-    })
+    });
   }
 
   render () {
