@@ -73,21 +73,48 @@ const PriceDeliveryAndStock = (props) => {
   };
 
   return <div>
+
     <div style={{marginBottom: "10px"}}>
-      <Price>{props.price}</Price>
-      <img style={{width: "50px", height: "auto"}} src='https://m.media-amazon.com/images/G/01/AmazonServices/Site/US/Product/FBA/small-and-light-prime-logo._V509606070_.png'></img>
-      <GreyInlineText> FREE One-Day</GreyInlineText>
+      <Price>{props.price === 'Price unavailable' ? 'Price unavailable' : `$${props.price}`}</Price>
+
+      {props.isPrimeFreeOneDay && (
       <div>
-        <InlineText>& </InlineText><BlueInlineText>FREE Returns &#8744;</BlueInlineText>
+        <img
+          style={{width: "50px", height: "auto"}}
+          src='https://m.media-amazon.com/images/G/01/AmazonServices/Site/US/Product/FBA/small-and-light-prime-logo._V509606070_.png'>
+        </img>
+        <GreyInlineText> FREE One-Day</GreyInlineText>
+        <div>
+          <InlineText>& </InlineText><BlueInlineText>FREE Returns &#8744;</BlueInlineText>
+        </div>
       </div>
+      )}
+
     </div>
+
+    {props.isFreeDelivery || props.isPrimeFreeOneDay ?
     <div style={{marginBottom: "20px"}}>
       <Text style={smallerPadding}>FREE delivery: <strong>Tomorrow</strong></Text>
-      <GreyText style={smallerPadding}>Order within {hours === 1 ? `${hours} hr and ${Math.round(minTillMidnight)} mins` : `${hours} hrs and ${Math.round(minTillMidnight)} mins`}</GreyText>
+      <GreyText style={smallerPadding}>
+        Order within {hours === 1 ? `${hours} hr and ${Math.round(minTillMidnight)} mins` : `${hours} hrs and ${Math.round(minTillMidnight)} mins`}
+      </GreyText>
       <BlueText style={smallerPadding}>Details</BlueText>
     </div>
+    :
+    <div style={{marginBottom: "20px"}}>
+      <Text style={smallerPadding}>
+        Get it in {`${Math.floor(Number(props.price) / 10)} to ${Math.floor((Number(props.price) / 10) + 2)}`} days
+      </Text>
+      <GreyText style={smallerPadding}>
+        Shipping & handling: ${`${Number(props.price) / 10}`.slice(0, 4)}
+      </GreyText>
+      <BlueText style={smallerPadding}>Details</BlueText>
+    </div>
+    }
+
     <Stock style={props.inventory ? {color: "#007600"} : {color: "#B12704"}}>{props.inventory ? "In Stock." : "Currently unavailble."}</Stock>
     {!props.inventory ? <Text style={{lineHeight: "20px"}}>We don't know when this item will be back in stock.</Text> : null}
+
   </div>
 };
 

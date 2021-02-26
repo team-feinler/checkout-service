@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
+// For testing purposes uncomment line below
 // import fetch from 'node-fetch';
 import fetchWithTimeout from '../fetchWithTimeout.js';
 import PriceDeliveryAndStock from '../components/PriceDeliveryAndStock.jsx';
@@ -27,10 +28,10 @@ export default class Checkout extends React.Component {
     super (props);
     this.state = {
       productId: null,
-      price: null,
+      price: '',
       inventory: null,
       delivery: {},
-      seller: null,
+      seller: '',
     };
   }
 
@@ -44,7 +45,7 @@ export default class Checkout extends React.Component {
       let productInventory = parsedResponse[0].inventory;
       this.setState({
         productId: productId,
-        price: `$${productPrice}`,
+        price: productPrice,
         inventory: productInventory
       });
     } catch (e) {
@@ -56,11 +57,9 @@ export default class Checkout extends React.Component {
     };
   }
 
-  // http://ec2-18-217-85-161.us-east-2.compute.amazonaws.com:4004/description/${productId}`
-
   async getSellerDetails(productId) {
     try {
-      const response = await fetchWithTimeout(`http://localhost:4004/description/${productId}`, {
+      const response = await fetchWithTimeout(`http://ec2-18-217-85-161.us-east-2.compute.amazonaws.com:4004/description/${productId}`, {
         timeout: 3000
       });
       const parsedResponse = await response.json();
@@ -70,13 +69,12 @@ export default class Checkout extends React.Component {
         isFreeDelivery: rawItemInfo.isFreeDelivery,
         isPrimeFreeOneDay: rawItemInfo.isPrimeFreeOneDay
       };
-      console.log(seller, delivery);
       this.setState({
         delivery: delivery,
         seller: seller
       });
     } catch (e) {
-      let seller = 'N/A';
+      let seller = 'Unable to get seller details';
       let delivery = {
         isFreeDelivery: false,
         isPrimeFreeOneDay: false
@@ -96,25 +94,22 @@ export default class Checkout extends React.Component {
   }
 
   render () {
-    let priceAndInventoryProps = {
+    let priceDeliveryAndStockProps = {
       price: this.state.price,
-      inventory: this.state.inventory
-    };
-    let PrimeDeliveryAndSellerProps = {
-      seller: this.state.seller,
-      isPrimeFreeOneDay: this.state.isPrimeFreeOneDay,
-      isFreeDelivery: this.state.isFreeDelivery
+      inventory: this.state.inventory,
+      isPrimeFreeOneDay: this.state.delivery.isPrimeFreeOneDay,
+      isFreeDelivery: this.state.delivery.isFreeDelivery
     };
 
     return (
       <CheckoutWrapper>
-        <PriceDeliveryAndStock { ...priceAndInventoryProps } />
+        <PriceDeliveryAndStock { ...priceDeliveryAndStockProps } />
         {this.state.inventory ?
         <div>
           <QuantityDropDown inventory={ this.state.inventory }/>
           <AddToCartButton />
           <BuyNowButton />
-          <SecureTransactionAndSellerDetails { ...PrimeDeliveryAndSellerProps } />
+          <SecureTransactionAndSellerDetails seller={ this.state.seller } />
         </div>
         :
         null

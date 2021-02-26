@@ -33,6 +33,7 @@ const SellerDetails = styled(Text)`
   font-size: 12px;
   color: #0F1111;
   margin-left: 10px;
+  margin-top: 6px;
   max-width: 140px;
   display: inline-block;
   text-overflow: ellipsis;
@@ -88,42 +89,45 @@ const X = styled(Text)`
 const SecureTransactionAndSellerDetails = (props) => {
   const [popover, setPopover] = useState(false);
   const togglePopover = () => setPopover(!popover);
-  let sellerDetails = {
-    sellerDetail: props.seller,
-    sellerDetailTitle: props.seller
-  };
 
   return <div>
     <SecureTransactionAndSellerDetailsWrapper>
-    <img onClick={() => togglePopover()} style={{height: "15px", verticalAlign: "top", cursor: "pointer"}} src="https://images-na.ssl-images-amazon.com/images/G/01/x-locale/checkout/truespc/secured-ssl._CB485936932_.png"></img>
-    <SecureTransactionText onClick={() => togglePopover()}>Secure Transaction</SecureTransactionText>
-    {popover && (
-    <SecureTransactionPopover>
-      <X onClick={() => togglePopover()}>x</X>
-      <PopoverBoldText>Your transaction is secure</PopoverBoldText>
-      <RegularText>We work hard to protect your security and privacy. Our payment security system encrypts your information during transmission. We don’t share your credit card details with third-party sellers, and we don’t sell your information to others. <BlueInlineText>Learn more</BlueInlineText></RegularText>
-    </SecureTransactionPopover>
-    )}
-    <table style={{marginTop: "8px"}}>
-      <tbody>
-        <tr>
-          <td>
-            <SellerDetailsTitle>Ships from</SellerDetailsTitle>
-          </td>
-          <td>
-            <SellerDetails>{sellerDetails.sellerDetail}</SellerDetails>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <SellerDetailsTitle>Sold By</SellerDetailsTitle>
-          </td>
-          <td>
-            <SellerDetails>{sellerDetails.sellerDetailTitle}</SellerDetails>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      <img
+        onClick={() => togglePopover()}
+        style={{height: "15px", verticalAlign: "top", cursor: "pointer"}}
+        src="https://images-na.ssl-images-amazon.com/images/G/01/x-locale/checkout/truespc/secured-ssl._CB485936932_.png">
+      </img>
+      <SecureTransactionText onClick={() => togglePopover()}>Secure Transaction</SecureTransactionText>
+      {popover && (
+      <SecureTransactionPopover>
+        <X onClick={() => togglePopover()}>x</X>
+        <PopoverBoldText>Your transaction is secure</PopoverBoldText>
+        <RegularText>
+          We work hard to protect your security and privacy. Our payment security system encrypts your information during transmission. We don’t share your credit card details with third-party sellers, and we don’t sell your information to others.
+          <BlueInlineText>Learn more</BlueInlineText>
+        </RegularText>
+      </SecureTransactionPopover>
+      )}
+      <table style={{marginTop: "8px"}}>
+        <tbody>
+          <tr>
+            <td>
+              <SellerDetailsTitle>Ships from</SellerDetailsTitle>
+            </td>
+            <td>
+              <SellerDetails>{props.seller}</SellerDetails>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <SellerDetailsTitle>Sold By</SellerDetailsTitle>
+            </td>
+            <td>
+              <SellerDetails>{props.seller}</SellerDetails>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </SecureTransactionAndSellerDetailsWrapper>
     </div>
 }
