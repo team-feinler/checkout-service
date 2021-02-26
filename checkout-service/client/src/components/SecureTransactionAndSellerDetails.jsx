@@ -84,11 +84,14 @@ const X = styled(Text)`
   cursor: pointer;
 `;
 
-let sellerDetails = {sellerDetail: chance.company(), sellerDetailTitle: chance.company()};
 
 const SecureTransactionAndSellerDetails = (props) => {
   const [popover, setPopover] = useState(false);
   const togglePopover = () => setPopover(!popover);
+  let sellerDetails = {
+    sellerDetail: props.seller,
+    sellerDetailTitle: props.seller
+  };
 
   return <div>
     <SecureTransactionAndSellerDetailsWrapper>
