@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { v4 as uuidv4 } from 'uuid';
 import Chance from 'chance';
 const chance = new Chance();
 
@@ -84,7 +85,6 @@ const ListItemImgWrapper = styled.span`
 const ListItemImg = styled.img`
   height: 22px;
   width: 30px;
-
 `;
 
 const ListItemTextWrapper = styled.div`
@@ -113,7 +113,7 @@ const generateListItems = () => {
   let listItems = [];
   for (let i = 0; i < randomNumOfLists; i++) {
     let randomPrivateOrPublicIndex = Math.floor(Math.random() * Math.floor(2));
-    listItems.push(<ListItem><ListItemImgWrapper><ListItemImg src={'https://placeimg.com/50/50'}></ListItemImg></ListItemImgWrapper><ListItemTextWrapper><ListItemLabel>{chance.word()}</ListItemLabel><ListItemStatus>{listStatus[randomPrivateOrPublicIndex]}</ListItemStatus></ListItemTextWrapper></ListItem>);
+    listItems.push(<ListItem key={uuidv4()}><ListItemImgWrapper><ListItemImg src={'https://placeimg.com/50/50'}></ListItemImg></ListItemImgWrapper><ListItemTextWrapper><ListItemLabel>{chance.word()}</ListItemLabel><ListItemStatus>{listStatus[randomPrivateOrPublicIndex]}</ListItemStatus></ListItemTextWrapper></ListItem>);
   };
   return listItems;
 };
