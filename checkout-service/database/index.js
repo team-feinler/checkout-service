@@ -16,7 +16,7 @@ Mongoose.connect(Db, mongooseOptions, (err) => {
 
 
 const PrinventorySchema = Mongoose.Schema({
-  id: Number,
+  _id: Number,
   price: Number,
   inventory: Number,
 });
