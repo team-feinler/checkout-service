@@ -40,6 +40,23 @@ app.post('/priceandinventory/id/multiple', (req, res) => {
   }
 });
 
+//add a route to create one new record in the database
+app.post('/priceandinventory/id/createRecord/:productId', (req, res) => {
+  let { productId } = req.params;
+  //execute a create query on the database based on the productId
+})
+
+//add a route to update a record in the database
+app.put('/priceandinventory/id/updateRecord/:productId', (req, res) => {
+  let { productId } = req.params;
+  //execute an update query on the database based on the productId number
+})
+
+//add a route to delete a record in the database
+app.delete('/priceandinventory/id/removeRecord/:productId', (req, res) => {
+  let { productId } = req.params;
+  //execute a delete query on database based on the productId number
+})
 
 app.listen(port, () => console.log(`listening on port ${port}`));
 
