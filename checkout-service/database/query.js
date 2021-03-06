@@ -22,10 +22,20 @@ const createNewRecord = async (recordObject) => {
 const removeOneRecord = async (productIdNumberToDelete) => {
   try {
     await Prinventory.deleteOne({id: productIdNumberToDelete})
-  } catch (err) {
+  } catch (error) {
     console.log('ERROR IN REMOVING RECORD: ', err)
   }
 };
+
+//update a record
+const updateOneRecord = async (productIdObjectToUpdate) => {
+  try{
+    let updatedRecord = await Prinventory.findOneAndUpdate({id: productIdObjectToUpdate.id}, productIdObjectToUpdate, {new: true, overwrite: true});
+    return updatedRecord;
+  } catch (error) {
+    console.log('ERROR IN UPDATE in db query: ', error)
+  }
+}
 
 
 module.exports = {
@@ -33,4 +43,5 @@ module.exports = {
   getMultipleProductsPriceAndInventoryCount: getMultipleProductsPriceAndInventoryCount,
   removeOneRecord: removeOneRecord,
   createNewRecord: createNewRecord,
+  updateOneRecord: updateOneRecord,
 };

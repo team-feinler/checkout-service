@@ -40,10 +40,8 @@ app.post('/priceandinventory/id/multiple', (req, res) => {
   }
 });
 
-//add a route to create one new record in the database
 app.post('/priceandinventory/id/createRecord', (req, res) => {
   let newRecord = req.body;
-  //execute a create query on the database
   dbQuery.createNewRecord(newRecord)
     .then(() => {
       res.sendStatus(200);
@@ -53,13 +51,17 @@ app.post('/priceandinventory/id/createRecord', (req, res) => {
     })
 })
 
-//add a route to update a record in the database
 app.put('/priceandinventory/id/updateRecord', (req, res) => {
   let recordToUpdate = req.body;
-  //execute an update query on the database
+  dbQuery.updateOneRecord(recordToUpdate)
+    .then((result) => {
+      res.status(200).send(result);
+    })
+    .catch((error) => {
+      console.log('FAILED TO UPDATE in server: ', error);
+    })
 })
 
-//add a route to delete a record in the database
 app.delete('/priceandinventory/id/removeRecord/:productId', (req, res) => {
   let { productId } = req.params;
   dbQuery.removeOneRecord(productId)
