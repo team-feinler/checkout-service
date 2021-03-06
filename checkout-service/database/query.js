@@ -11,8 +11,18 @@ const getMultipleProductsPriceAndInventoryCount = async (ids) => {
   return productPricesAndInventoryCounts;
 };
 
+const removeOneRecord = async (productIdNumberToDelete) => {
+  try {
+    await Prinventory.deleteOne({id: productIdNumberToDelete})
+    console.log('SUCCESSFULLY REMOVED RECORD FROM DATABASE')
+  } catch (err) {
+    console.log('ERROR IN REMOVING RECORD: ', err)
+  }
+};
+
 
 module.exports = {
   getProductPriceAndInventoryCount: getProductPriceAndInventoryCount,
-  getMultipleProductsPriceAndInventoryCount: getMultipleProductsPriceAndInventoryCount
+  getMultipleProductsPriceAndInventoryCount: getMultipleProductsPriceAndInventoryCount,
+  removeOneRecord: removeOneRecord,
 };

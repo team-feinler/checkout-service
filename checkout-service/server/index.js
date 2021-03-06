@@ -55,7 +55,13 @@ app.put('/priceandinventory/id/updateRecord', (req, res) => {
 //add a route to delete a record in the database
 app.delete('/priceandinventory/id/removeRecord/:productId', (req, res) => {
   let { productId } = req.params;
-  //execute a delete query on database based on the productId number
+  dbQuery.removeOneRecord(productId)
+    .then(() => {
+      res.send(200);
+    })
+    .catch((err) => {
+      console.log('FAILED DELETING RECORD IN SERVER', err);
+    })
 })
 
 app.listen(port, () => console.log(`listening on port ${port}`));
