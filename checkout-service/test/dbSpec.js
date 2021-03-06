@@ -30,7 +30,7 @@ describe('Database seeding', () => {
     });
   });
 
-  describe('Seeding database with fake data', () => {
+  xdescribe('Seeding database with fake data', () => {
 
     before(async () => {
       await Prinventory.db.dropDatabase();
