@@ -38,7 +38,7 @@ const CreateFakeData = () => {
     }
 
     let item = {
-      _id: productId,
+      id: productId,
       price: price,
       inventory: inventory
     };
