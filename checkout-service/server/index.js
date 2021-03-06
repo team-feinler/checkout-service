@@ -41,15 +41,15 @@ app.post('/priceandinventory/id/multiple', (req, res) => {
 });
 
 //add a route to create one new record in the database
-app.post('/priceandinventory/id/createRecord/:productId', (req, res) => {
-  let { productId } = req.params;
-  //execute a create query on the database based on the productId
+app.post('/priceandinventory/id/createRecord', (req, res) => {
+  let newRecord = req.body;
+  //execute a create query on the database
 })
 
 //add a route to update a record in the database
-app.put('/priceandinventory/id/updateRecord/:productId', (req, res) => {
-  let { productId } = req.params;
-  //execute an update query on the database based on the productId number
+app.put('/priceandinventory/id/updateRecord', (req, res) => {
+  let recordToUpdate = req.body;
+  //execute an update query on the database
 })
 
 //add a route to delete a record in the database
