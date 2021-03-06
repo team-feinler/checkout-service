@@ -44,6 +44,14 @@ app.post('/priceandinventory/id/multiple', (req, res) => {
 app.post('/priceandinventory/id/createRecord', (req, res) => {
   let newRecord = req.body;
   //execute a create query on the database
+  dbQuery.createNewRecord(newRecord)
+    .then(() => {
+      console.log('SUCCESSFULLY SAVED A RECORD in server')
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log('ERROR SAVING RECORD in server: ', error);
+    })
 })
 
 //add a route to update a record in the database
@@ -57,7 +65,8 @@ app.delete('/priceandinventory/id/removeRecord/:productId', (req, res) => {
   let { productId } = req.params;
   dbQuery.removeOneRecord(productId)
     .then(() => {
-      res.send(200);
+      console.log('SUCCESSFULLY DELETED RECORD in server');
+      res.sendStatus(200);
     })
     .catch((err) => {
       console.log('FAILED DELETING RECORD IN SERVER', err);
