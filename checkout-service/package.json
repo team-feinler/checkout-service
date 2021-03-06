@@ -13,6 +13,7 @@
     "test-react": "jest",
     "testDb": "node ./spec/db/dbSpec.js",
     "start": "node ./server/index.js",
+    "start-dev": "nodemon ./server/index.js",
     "react-dev": "webpack --mode=development --watch",
     "build": "webpack --mode=production",
     "deploy": "./deploy.sh"

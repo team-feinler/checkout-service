@@ -46,7 +46,6 @@ app.post('/priceandinventory/id/createRecord', (req, res) => {
   //execute a create query on the database
   dbQuery.createNewRecord(newRecord)
     .then(() => {
-      console.log('SUCCESSFULLY SAVED A RECORD in server')
       res.sendStatus(200);
     })
     .catch((error) => {
@@ -65,7 +64,6 @@ app.delete('/priceandinventory/id/removeRecord/:productId', (req, res) => {
   let { productId } = req.params;
   dbQuery.removeOneRecord(productId)
     .then(() => {
-      console.log('SUCCESSFULLY DELETED RECORD in server');
       res.sendStatus(200);
     })
     .catch((err) => {

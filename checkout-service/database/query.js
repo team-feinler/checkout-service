@@ -14,7 +14,6 @@ const getMultipleProductsPriceAndInventoryCount = async (ids) => {
 const createNewRecord = async (recordObject) => {
   try{
     let savedRecord = await Prinventory.create(recordObject);
-    console.log('SUCCESSFULLY SAVED A NEW RECORD: ', savedRecord);
   } catch (error) {
     console.log('ERROR IN CREATING A RECORD: ', error);
   }
@@ -23,7 +22,6 @@ const createNewRecord = async (recordObject) => {
 const removeOneRecord = async (productIdNumberToDelete) => {
   try {
     await Prinventory.deleteOne({id: productIdNumberToDelete})
-    console.log('SUCCESSFULLY REMOVED RECORD FROM DATABASE')
   } catch (err) {
     console.log('ERROR IN REMOVING RECORD: ', err)
   }
