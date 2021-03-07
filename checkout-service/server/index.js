@@ -48,6 +48,7 @@ app.post('/priceandinventory/id/createRecord', (req, res) => {
     })
     .catch((error) => {
       console.log('ERROR SAVING RECORD in server: ', error);
+      res.status(400).end();
     })
 })
 
@@ -59,6 +60,7 @@ app.put('/priceandinventory/id/updateRecord', (req, res) => {
     })
     .catch((error) => {
       console.log('FAILED TO UPDATE in server: ', error);
+      res.status(400).end();
     })
 })
 
@@ -70,6 +72,7 @@ app.delete('/priceandinventory/id/removeRecord/:productId', (req, res) => {
     })
     .catch((err) => {
       console.log('FAILED DELETING RECORD IN SERVER', err);
+      res.status(400).end();
     })
 })
 
