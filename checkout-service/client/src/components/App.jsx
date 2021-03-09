@@ -37,7 +37,7 @@ export default class Checkout extends React.Component {
 
   async getPriceAndInventory(productId) {
     try {
-      const response = await fetchWithTimeout(`http://ec2-3-141-67-137.us-east-2.compute.amazonaws.com:4003/priceandinventory/id/${productId}`, {
+      const response = await fetchWithTimeout(`/priceandinventory/id/${productId}`, {
         timeout: 3000
       });
       const parsedResponse = await response.json();

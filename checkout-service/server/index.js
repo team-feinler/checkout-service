@@ -40,6 +40,41 @@ app.post('/priceandinventory/id/multiple', (req, res) => {
   }
 });
 
+app.post('/priceandinventory/id/createRecord', (req, res) => {
+  let newRecord = req.body;
+  dbQuery.createNewRecord(newRecord)
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log('ERROR SAVING RECORD in server: ', error);
+      res.status(400).end();
+    })
+})
+
+app.put('/priceandinventory/id/updateRecord', (req, res) => {
+  let recordToUpdate = req.body;
+  dbQuery.updateOneRecord(recordToUpdate)
+    .then((result) => {
+      res.status(200).send(result);
+    })
+    .catch((error) => {
+      console.log('FAILED TO UPDATE in server: ', error);
+      res.status(400).end();
+    })
+})
+
+app.delete('/priceandinventory/id/removeRecord/:productId', (req, res) => {
+  let { productId } = req.params;
+  dbQuery.removeOneRecord(productId)
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log('FAILED DELETING RECORD IN SERVER', err);
+      res.status(400).end();
+    })
+})
 
 app.listen(port, () => console.log(`listening on port ${port}`));
 

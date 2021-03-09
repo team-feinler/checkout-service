@@ -11,8 +11,37 @@ const getMultipleProductsPriceAndInventoryCount = async (ids) => {
   return productPricesAndInventoryCounts;
 };
 
+const createNewRecord = async (recordObject) => {
+  try{
+    let savedRecord = await Prinventory.create(recordObject);
+  } catch (error) {
+    console.log('ERROR IN CREATING A RECORD: ', error);
+  }
+};
+
+const removeOneRecord = async (productIdNumberToDelete) => {
+  try {
+    await Prinventory.deleteOne({id: productIdNumberToDelete})
+  } catch (error) {
+    console.log('ERROR IN REMOVING RECORD: ', err)
+  }
+};
+
+//update a record
+const updateOneRecord = async (productIdObjectToUpdate) => {
+  try{
+    let updatedRecord = await Prinventory.findOneAndUpdate({id: productIdObjectToUpdate.id}, productIdObjectToUpdate, {new: true, overwrite: true});
+    return updatedRecord;
+  } catch (error) {
+    console.log('ERROR IN UPDATE in db query: ', error)
+  }
+}
+
 
 module.exports = {
   getProductPriceAndInventoryCount: getProductPriceAndInventoryCount,
-  getMultipleProductsPriceAndInventoryCount: getMultipleProductsPriceAndInventoryCount
+  getMultipleProductsPriceAndInventoryCount: getMultipleProductsPriceAndInventoryCount,
+  removeOneRecord: removeOneRecord,
+  createNewRecord: createNewRecord,
+  updateOneRecord: updateOneRecord,
 };
