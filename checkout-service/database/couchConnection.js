@@ -3,9 +3,11 @@ const nano = require('nano')(`http://${username}:${password}@localhost:${port}`)
 
 const createAndConnectToDatabase = async () => {
   try {
-    const response = await nano.db.create('prinventory')
+    await nano.db.destroy('prinventory');
+    await nano.db.create('prinventory');
+    const prinventory = await nano.db.use('prinventory');
     // succeeded
-    console.log('Successfully created database!', response);
+    console.log('Successfully created and using database!');
   } catch (e) {
     // failed
     console.error('Error creating database!', e);
