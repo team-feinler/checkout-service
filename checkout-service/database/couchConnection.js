@@ -5,13 +5,14 @@ const createAndConnectToDatabase = async () => {
   try {
     await nano.db.destroy('prinventory');
     await nano.db.create('prinventory');
-    const prinventory = await nano.db.use('prinventory');
+    const database = await nano.db.use('prinventory');
     // succeeded
     console.log('Successfully created and using database!');
+    return database;
   } catch (e) {
     // failed
     console.error('Error creating database!', e);
   }
 };
 
-createAndConnectToDatabase();
+module.exports = { createAndConnectToDatabase };
