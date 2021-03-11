@@ -7,11 +7,13 @@ const sequelize = new Sequelize(postgres.database, postgres.user, postgres.passw
   logging: false
 });
 
-const authentication = async () => {
+const establishConnection = async () => {
   try {
     await sequelize.authenticate();
     console.log('CONNECTION ESTABLISHED');
   } catch (error) {
     console.log('ERROR IN CONNECTION: ', error);
   }
-}
+};
+
+establishConnection();
