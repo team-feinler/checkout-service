@@ -1,9 +1,9 @@
 const CreateFakeData = require('./dataGenerator.js');
-const { createAndConnectToDatabase } = require ('../couchConnection.js');
+const { createConnectionToCouchDB } = require ('../couchConnection.js');
 const nano = require('nano');
 
 const DbSeed = async function() {
-  const prinventory = await createAndConnectToDatabase();
+  const prinventory = await createConnectionToCouchDB();
   let dataToSave = await CreateFakeData();
   //dataToSave is an array of objects. Each object is one record and looks like this:
   // { _id: 1, price: 18.99, inventory: 33 }
