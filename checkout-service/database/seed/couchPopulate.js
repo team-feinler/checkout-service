@@ -1,5 +1,5 @@
 const CreateFakeData = require('./dataGenerator.js');
-const { createConnectionToCouchDB } = require ('../couchConnection.js');
+const { createConnectionToCouchDB } = require('../couch/couchConnection.js');
 const nano = require('nano');
 
 const DbSeed = async function() {

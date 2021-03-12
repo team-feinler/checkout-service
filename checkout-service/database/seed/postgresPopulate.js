@@ -1,6 +1,6 @@
 const CreateFakeData = require('./dataGenerator.js');
 const { Sequelize } = require('sequelize');
-const { establishConnection, testConnection, closeConnection } = require('../postgresConnection.js');
+const { establishConnection, testConnection, closeConnection } = require('../postgres/postgresConnection.js');
 
 const DbSeed = async function() {
   const prinventory = await establishConnection();

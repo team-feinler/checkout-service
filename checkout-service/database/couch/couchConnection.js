@@ -1,4 +1,4 @@
-const { username, password, port } = require('./config.js');
+const { username, password, port } = require('../config.js');
 const nano = require('nano')(`http://${username}:${password}@localhost:${port}`);
 
 const createConnectionToCouchDB = async () => {

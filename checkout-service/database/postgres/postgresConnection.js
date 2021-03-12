@@ -1,5 +1,5 @@
 const { Sequelize } = require('sequelize');
-const { postgres } = require('./config.js');
+const { postgres } = require('../config.js');
 
 const establishConnection = async () => {
   const connection = await new Sequelize(postgres.database, postgres.user, postgres.password, {
