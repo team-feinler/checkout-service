@@ -12,7 +12,7 @@ const prinventory = sequelize.define('prinventory', {
   //   allowNull: false,
   //   unique: true,
   // },
-  productNumber: {
+  id: {
     type: DataTypes.INTEGER,
     allowNull: false,
     unique: true,
@@ -28,10 +28,25 @@ const prinventory = sequelize.define('prinventory', {
   }
 });
 
-//sync all models function
-const syncModels = async () => {
-  await sequelize.sync({ force: true });
-  console.log('All models were synchronized successfully!');
+//controllers
+const addMultipleRecords = async (arrayOfRecords) => {
+  try {
+    await prinventory.bulkCreate(arrayOfRecords);
+    return arrayOfRecords.length;
+  } catch (error) {
+    console.log('Error inserting multiple records! ', error);
+  }
 };
 
-export.defaults = { syncModels };
+//sync all models function
+const syncModels = async () => {
+  try {
+    await sequelize.sync({ force: true });
+    console.log('All models were synchronized successfully!');
+  } catch (e) {
+    console.log('Error syncing models: ', e);
+  }
+};
+
+
+module.exports = { syncModels, addMultipleRecords };
