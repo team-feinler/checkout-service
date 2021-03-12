@@ -5,12 +5,22 @@ const sequelize = establishConnection();
 
 //single table schema
 const prinventory = sequelize.define('prinventory', {
+  // uuid: {
+  //   type: DataTypes.UUID,
+  //   defaultValue: Sequelize.UUIDV4,
+  //   primaryKey: true,
+  //   allowNull: false,
+  //   unique: true,
+  // },
   productNumber: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    unique: true,
+    primaryKey: true
   },
   price: {
     type: DataTypes.INTEGER,
+    allowNull: true,
   },
   inventory: {
     type: DataTypes.INTEGER,
