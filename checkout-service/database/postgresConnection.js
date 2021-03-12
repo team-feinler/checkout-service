@@ -20,8 +20,8 @@ const testConnection = async (connection) => {
   }
 };
 
-const closeConnection = async () => {
-  await sequelize.close();
+const closeConnection = async (connection) => {
+  await connection.close();
   console.log('CONNECTION CLOSED');
 };
 
