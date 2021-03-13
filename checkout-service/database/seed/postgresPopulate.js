@@ -1,4 +1,4 @@
-const CreateFakeData = require('./dataGenerator.js');
+const CreateFakeData = require('./postgresDataGenerator.js');
 const { Sequelize } = require('sequelize');
 const { establishConnection, testConnection, closeConnection } = require('../postgres/postgresConnection.js');
 const { syncModels, addMultipleRecords } = require('../postgres/postgresModel.js');

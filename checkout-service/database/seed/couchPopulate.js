@@ -1,4 +1,4 @@
-const CreateFakeData = require('./dataGenerator.js');
+const CreateFakeData = require('./couchDataGenerator.js');
 const { createConnectionToCouchDB } = require('../couch/couchConnection.js');
 const nano = require('nano');
 
