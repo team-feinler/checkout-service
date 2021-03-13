@@ -32,5 +32,3 @@ DbSeed(100000, 1000, 1);
 
 //Seed 10,000,000 in batches of 1,0000
 // DbSeed(10000000, 1000, 1)
-
-module.exports = DbSeed;
