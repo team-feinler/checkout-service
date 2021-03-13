@@ -1,7 +1,7 @@
-const { username, password, port } = require('./config.js');
+const { username, password, port } = require('../config.js');
 const nano = require('nano')(`http://${username}:${password}@localhost:${port}`);
 
-const createAndConnectToDatabase = async () => {
+const createConnectionToCouchDB = async () => {
   try {
     await nano.db.destroy('prinventory');
     await nano.db.create('prinventory');
@@ -15,4 +15,4 @@ const createAndConnectToDatabase = async () => {
   }
 };
 
-module.exports = { createAndConnectToDatabase };
+module.exports = { createConnectionToCouchDB };
