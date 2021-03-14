@@ -7,7 +7,7 @@ const DbSeed = async function(desiredNumberOfRecords, batchSize, startingId) {
 
   const numBatches = desiredNumberOfRecords / batchSize;
   const copyOfRecords = desiredNumberOfRecords;
-  let currentBatch = 1;
+  // let currentBatch = 1;
 
   for (let i = 0; i < desiredNumberOfRecords; i+=batchSize) {
     let firstIndexInBatch = startingId;
@@ -17,18 +17,19 @@ const DbSeed = async function(desiredNumberOfRecords, batchSize, startingId) {
       let dataToSave = await CreateFakeCouchData(batchSize, firstIndexInBatch);
       await prinventory.bulk({docs: dataToSave})
       startingId+=batchSize;
-      currentBatch++;
+      // currentBatch++;
     } catch (e) {
       console.log('Error seeding database', err);
     }
   }
+  console.log('DATABASE SEEDING COMPLETE!');
 };
 
 //Seed 100,000 in batches of 1,000
-DbSeed(100000, 1000, 1);
+// DbSeed(100000, 1000, 1);
 
 //Seed 1,000,000 in batches of 1,0000
 // DbSeed(1000000, 1000, 1)
 
 //Seed 10,000,000 in batches of 1,0000
-// DbSeed(10000000, 1000, 1)
+DbSeed(10000000, 1000, 1)
