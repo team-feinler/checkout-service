@@ -58,4 +58,4 @@ const syncModels = async () => {
 };
 
 
-module.exports = { syncModels, addMultipleRecords };
+module.exports = { syncModels, addMultipleRecords, getProductPriceAndInventoryCount };
