@@ -38,6 +38,15 @@ const addMultipleRecords = async (arrayOfRecords) => {
   }
 };
 
+const getProductPriceAndInventoryCount = async(incomingProductNumber) => {
+  try {
+    let productPriceAndInventoryCount = await prinventory.findOne({where: {id: incomingProductNumber}});
+    return productPriceAndInventoryCount;
+  } catch (e) {
+    console.log('Could not retrieve requested product number: ', e);
+  }
+}
+
 //sync all models function
 const syncModels = async () => {
   try {
