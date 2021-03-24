@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const port = 4003;
 const app = express();
-// const dbQuery = require('../database/query.js');
+// const dbQuery = require('../database/query.js'); // <-- mongoDB query functions
 const { getProductPriceAndInventoryCount } = require('../database/postgres/postgresModel.js');
 
 app.use(cors());
@@ -20,10 +20,9 @@ var corsOptions = {
 
 app.get('/priceandinventory/id/:productId', (req, res) => {
   let productId = req.params.productId;
-  // dbQuery.getProductPriceAndInventoryCount(productId)
+  // dbQuery.getProductPriceAndInventoryCount(productId) // <-- mongoDB query
   getProductPriceAndInventoryCount(productId)
   .then((productInfo) => {
-    // Function returns stringified empty array '[]' which has length of 2
     if (!productInfo.length) {
       res.status(404).send('Invalid product id');
     } else {

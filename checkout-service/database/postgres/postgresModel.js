@@ -39,11 +39,14 @@ const addMultipleRecords = async (arrayOfRecords) => {
 };
 
 const getProductPriceAndInventoryCount = async(incomingProductNumber) => {
+  const recordToReturn = [];
   try {
-    let productPriceAndInventoryCount = await prinventory.findOne({where: {id: incomingProductNumber}});
-    return productPriceAndInventoryCount;
+    let { dataValues } = await prinventory.findOne({ where: { id: incomingProductNumber } });
+    recordToReturn.push(dataValues);
+    return recordToReturn;
   } catch (e) {
     console.log('Could not retrieve requested product number: ', e);
+    return recordToReturn;
   }
 }
 
