@@ -4,7 +4,13 @@ const cors = require('cors');
 const port = 4003;
 const app = express();
 // const dbQuery = require('../database/query.js'); // <-- mongoDB query functions
-const { getProductPriceAndInventoryCount } = require('../database/postgres/postgresModel.js');
+const {
+  getProductPriceAndInventoryCount,
+  getMultipleProductsPriceAndInventoryCount,
+  removeOneRecord,
+  updateOneRecord,
+  createNewRecord
+} = require('../database/postgres/postgresModel.js');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -36,14 +42,16 @@ app.post('/priceandinventory/id/multiple', (req, res) => {
   if (productIds.length > 30 || productIds.length === 0 || !productIds) {
     res.status(400).end();
   } else {
-    dbQuery.getMultipleProductsPriceAndInventoryCount(productIds)
+    // dbQuery.getMultipleProductsPriceAndInventoryCount(productIds)
+    getMultipleProductsPriceAndInventoryCount(productIds)
     .then(productsInfo => res.status(200).send(productsInfo));
   }
 });
 
 app.post('/priceandinventory/id/createRecord', (req, res) => {
   let newRecord = req.body;
-  dbQuery.createNewRecord(newRecord)
+  // dbQuery.createNewRecord(newRecord)
+  createNewRecord(newRecord)
     .then(() => {
       res.sendStatus(200);
     })
@@ -55,7 +63,8 @@ app.post('/priceandinventory/id/createRecord', (req, res) => {
 
 app.put('/priceandinventory/id/updateRecord', (req, res) => {
   let recordToUpdate = req.body;
-  dbQuery.updateOneRecord(recordToUpdate)
+  // dbQuery.updateOneRecord(recordToUpdate)
+  updateOneRecord(recordToUpdate)
     .then((result) => {
       res.status(200).send(result);
     })
@@ -67,7 +76,8 @@ app.put('/priceandinventory/id/updateRecord', (req, res) => {
 
 app.delete('/priceandinventory/id/removeRecord/:productId', (req, res) => {
   let { productId } = req.params;
-  dbQuery.removeOneRecord(productId)
+  // dbQuery.removeOneRecord(productId)
+  removeOneRecord(productId)
     .then(() => {
       res.sendStatus(200);
     })

@@ -50,6 +50,44 @@ const getProductPriceAndInventoryCount = async(incomingProductNumber) => {
   }
 }
 
+const getMultipleProductsPriceAndInventoryCount = async (ids) => {
+  const recordsToReturn = [];
+  try {
+    let productPricesAndInventoryCounts = await prinventory.findAll({ where: { id: ids } });
+    recordsToReturn.push(productPricesAndInventoryCounts);
+    return recordsToReturn;
+  } catch (e) {
+    console.log('Could not retrieve requested records: ', e);
+    return recordsToReturn;
+  }
+};
+
+const createNewRecord = async (recordObject) => {
+  try{
+    let savedRecord = await prinventory.create(recordObject);
+  } catch (error) {
+    console.log('ERROR IN CREATING A RECORD: ', error);
+  }
+};
+
+const updateOneRecord = async (productIdObjectToUpdate) => {
+  const options = {where: {id: productIdObjectToUpdate.id}, returning: true};
+  try{
+    let updatedRecord = await prinventory.update(productIdObjectToUpdate, options);
+    return updatedRecord[1][0].dataValues;
+  } catch (error) {
+    console.log('ERROR IN UPDATE in db query: ', error)
+  }
+}
+
+const removeOneRecord = async (productIdNumberToDelete) => {
+  try {
+    await prinventory.destroy({where: { id: productIdNumberToDelete}})
+  } catch (error) {
+    console.log('ERROR IN REMOVING RECORD: ', err)
+  }
+};
+
 //sync all models function
 const syncModels = async () => {
   try {
@@ -61,4 +99,12 @@ const syncModels = async () => {
 };
 
 
-module.exports = { syncModels, addMultipleRecords, getProductPriceAndInventoryCount };
+module.exports = {
+  syncModels,
+  addMultipleRecords,
+  getProductPriceAndInventoryCount,
+  getMultipleProductsPriceAndInventoryCount,
+  removeOneRecord,
+  updateOneRecord,
+  createNewRecord
+ };
