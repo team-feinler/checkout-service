@@ -28,10 +28,10 @@ const DbSeed = async function(desiredNumberOfRecords, batchSize, startingId) {
 };
 
 //Seed 100,000 in batches of 1,000
-DbSeed(100000, 1000, 1);
+// DbSeed(100000, 1000, 1);
 
 //Seed 1,000,000 in batches of 1,0000
-// DbSeed(1000000, 1000, 1);
+DbSeed(1000000, 1000, 1);
 
 //Seed 10,000,000 in batches of 1,0000
 // DbSeed(10000000, 1000, 1);
