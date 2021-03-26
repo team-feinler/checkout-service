@@ -24,22 +24,13 @@ const prinventory = sequelize.define('prinventory', {
   inventory: {
     type: DataTypes.INTEGER,
     allowNull: true
-  },
-  // {
-  //   indexes: [
-  //     {
-  //       unique: true,
-  //       fields: [ 'productId'],
-  //     }
-  //   ]
-  // }
+  }
 });
 
 //controllers
 const addMultipleRecords = async (arrayOfRecords) => {
   try {
     await prinventory.bulkCreate(arrayOfRecords);
-    return arrayOfRecords.length;
   } catch (error) {
     console.log('Error inserting multiple records! ', error);
   }
