@@ -11,7 +11,7 @@ const CreateFakePostgresData = (desiredNumberOfRecords, startingId) => {
   for (let i = 0; i < desiredNumberOfRecords; i++) {
     let productId = i + startingId;
     let item = {
-      id: productId,
+      productId: productId,
       price: fakePrice(),
       inventory: fakeInventory()
     };

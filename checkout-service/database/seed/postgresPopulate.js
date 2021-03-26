@@ -7,9 +7,9 @@ const DbSeed = async function(desiredNumberOfRecords, batchSize, startingId) {
   const prinventory = await establishConnection();
   await syncModels();
 
-  const numBatches = desiredNumberOfRecords / batchSize;
-  const copyOfRecords = desiredNumberOfRecords;
-  let currentBatch = 1;
+  // const numBatches = desiredNumberOfRecords / batchSize;
+  // const copyOfRecords = desiredNumberOfRecords;
+  // let currentBatch = 1;
 
   for (let i = 0; i < desiredNumberOfRecords; i+=batchSize) {
     let firstIndexInBatch = startingId;
@@ -19,7 +19,7 @@ const DbSeed = async function(desiredNumberOfRecords, batchSize, startingId) {
       let dataToSave = await CreateFakePostgresData(batchSize, firstIndexInBatch);
       await addMultipleRecords(dataToSave);
       startingId+=batchSize;
-      currentBatch++;
+      // currentBatch++;
     } catch (e) {
       console.log('Error seeding database', err);
     }

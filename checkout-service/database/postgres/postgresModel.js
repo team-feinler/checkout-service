@@ -48,7 +48,7 @@ const addMultipleRecords = async (arrayOfRecords) => {
 const getProductPriceAndInventoryCount = async(incomingProductNumber) => {
   const recordToReturn = [];
   try {
-    let { dataValues } = await prinventory.findOne({ where: { id: incomingProductNumber } });
+    let { dataValues } = await prinventory.findOne({ where: { productId: incomingProductNumber } });
     recordToReturn.push(dataValues);
     return recordToReturn;
   } catch (e) {
@@ -60,7 +60,7 @@ const getProductPriceAndInventoryCount = async(incomingProductNumber) => {
 const getMultipleProductsPriceAndInventoryCount = async (ids) => {
   const recordsToReturn = [];
   try {
-    let productPricesAndInventoryCounts = await prinventory.findAll({ where: { id: ids } });
+    let productPricesAndInventoryCounts = await prinventory.findAll({ where: { productId: ids } });
     recordsToReturn.push(productPricesAndInventoryCounts);
     return recordsToReturn;
   } catch (e) {
@@ -78,7 +78,7 @@ const createNewRecord = async (recordObject) => {
 };
 
 const updateOneRecord = async (productIdObjectToUpdate) => {
-  const options = {where: {id: productIdObjectToUpdate.id}, returning: true};
+  const options = {where: {productId: productIdObjectToUpdate.productId}, returning: true};
   try{
     let updatedRecord = await prinventory.update(productIdObjectToUpdate, options);
     return updatedRecord[1][0].dataValues;
@@ -89,7 +89,7 @@ const updateOneRecord = async (productIdObjectToUpdate) => {
 
 const removeOneRecord = async (productIdNumberToDelete) => {
   try {
-    await prinventory.destroy({where: { id: productIdNumberToDelete}})
+    await prinventory.destroy({where: { productId: productIdNumberToDelete}})
   } catch (error) {
     console.log('ERROR IN REMOVING RECORD: ', err)
   }
