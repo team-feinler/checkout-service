@@ -25,14 +25,14 @@ const prinventory = sequelize.define('prinventory', {
     type: DataTypes.INTEGER,
     allowNull: true
   },
-  {
-    indexes: [
-      {
-        unique: true,
-        fields: [ 'productId'],
-      }
-    ]
-  }
+  // {
+  //   indexes: [
+  //     {
+  //       unique: true,
+  //       fields: [ 'productId'],
+  //     }
+  //   ]
+  // }
 });
 
 //controllers
