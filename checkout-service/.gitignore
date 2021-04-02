@@ -3,3 +3,4 @@ checkout_bundle.js
 checkout_bundle.js.gz
 *config.js
 newrelic.js
+newrelic_agent.log
