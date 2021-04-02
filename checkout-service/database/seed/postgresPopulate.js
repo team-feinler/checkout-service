@@ -19,6 +19,7 @@ const DbSeed = async function(desiredNumberOfRecords, batchSize, startingId) {
       console.log('Error seeding database', err);
     }
   }
+  console.log('Database finished seeding.');
   closeConnection(prinventory);
 };
 
