@@ -14,7 +14,7 @@ const prinventory = sequelize.define('prinventory', {
   },
   productId: {
     type: DataTypes.INTEGER,
-    allowNull: false,
+    allowNull: true,
     unique: true,
     autoIncrement: true,
   },
