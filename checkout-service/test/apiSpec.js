@@ -23,7 +23,7 @@ describe('API calls', () => {
             let parsedResponse = JSON.parse(res.text);
             res.should.have.status(200);
             res.body.should.be.a('array');
-            expect(res.body[0].id).to.equal(1);
+            expect(res.body[0].productId).to.equal(1);
             expect(res.body[0]).to.have.property('price');
             expect(res.body[0]).to.have.property('inventory');
             done();
@@ -49,10 +49,10 @@ describe('API calls', () => {
           .end((err, res) => {
             res.should.have.status(200);
             res.body.should.be.a('array');
-            expect(res.body).to.have.length(4);
-            expect(res.body[0].id).to.equal(1);
-            expect(res.body[0]).to.have.property('price');
-            expect(res.body[0]).to.have.property('inventory');
+            expect(res.body[0]).to.have.length(4);
+            expect(res.body[0][0].productId).to.equal(1);
+            expect(res.body[0][0]).to.have.property('price');
+            expect(res.body[0][0]).to.have.property('inventory');
             done();
           });
       });
@@ -78,28 +78,30 @@ describe('API calls', () => {
 
 
       it('should create a new record in the database', (done) => {
-        const newRecord = {id: 101, price: 222, inventory: 35};
-        requester.post('/priceandinventory/id/createRecord').send(newRecord);
-        requester.get(`/priceandinventory/id/101`)
-          .end((err, res) => {
-            let parsedResponse = JSON.parse(res.text);
-            res.should.have.status(200);
-            res.body.should.be.a('array');
-            expect(res.body[0].id).to.equal(101);
-            done();
-          });
+        const newRecord = {productId: 10000001, price: 222, inventory: 35};
+        requester.post('/priceandinventory/id/createRecord').send(newRecord)
+        .then(() => {
+          requester.get(`/priceandinventory/id/10000001`)
+            .end((err, res) => {
+              // let parsedResponse = JSON.parse(res.text);
+              res.should.have.status(200);
+              res.body.should.be.a('array');
+              expect(res.body[0].productId).to.equal(10000001);
+              done();
+            });
+        })
       });
 
       it('should update an existing record in the database', (done) => {
-        const update = {id: 101, price: 250058, inventory: 1};
+        const update = {productId: 10000001, price: 250058, inventory: 1};
         requester.put('/priceandinventory/id/updateRecord').send(update)
         .then(() => {
-          requester.get(`/priceandinventory/id/101`)
+          requester.get(`/priceandinventory/id/10000001`)
           .end((err, res) => {
             let parsedResponse = JSON.parse(res.text);
             res.should.have.status(200);
             res.body.should.be.a('array');
-            expect(res.body[0].id).to.equal(101);
+            expect(res.body[0].productId).to.equal(10000001);
             expect(res.body[0].price).to.equal(250058);
             expect(res.body[0].inventory).to.equal(1);
             done();
@@ -108,10 +110,10 @@ describe('API calls', () => {
       });
 
       it('should delete an existing record from the database', (done) => {
-        const idToDelete = 101;
+        const idToDelete = 10000001;
         requester.delete(`/priceandinventory/id/removeRecord/${idToDelete}`)
         .then(() => {
-          requester.get(`/priceandinventory/id/101`)
+          requester.get(`/priceandinventory/id/10000001`)
           .end((err, res) => {
             res.should.have.status(404);
             done();
