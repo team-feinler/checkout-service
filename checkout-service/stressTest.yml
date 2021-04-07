@@ -3,7 +3,7 @@ config:
   phases:
     - duration: 60
       arrivalRate: 1
-      name: "testing one user per second for one second"
+      name: "testing one user per second for 60 second"
     - pause: 10
     - duration: 60
       arrivalRate: 10
