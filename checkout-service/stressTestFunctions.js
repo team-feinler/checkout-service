@@ -1,7 +1,7 @@
-const Faker = require('faker');
+const faker = require('faker');
 
 const randomNumber = (lowerLimit, upperLimit) => {
-  return Faker.random.number({min: lowerLimit, max: upperLimit})
+  return faker.random.number({min: lowerLimit, max: upperLimit})
 };
 
 const generateOneRecord = () => {
