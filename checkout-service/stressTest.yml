@@ -3,20 +3,20 @@ config:
   processor: "stressTestFunctions.js"
   phases:
     - duration: 60
-      arrivalRate: 1
-      name: "testing one user per second for 60 second"
-    - pause: 10
-    - duration: 60
-      arrivalRate: 10
-      name: "Ten users per second for 60 seconds"
-    - pause: 10
-    - duration: 60
       arrivalRate: 100
-      name: "100 users per second for 60 seconds"
-    - pause: 10
+      name: "testing 100 user per second for 60 second"
+    - pause: 60
     - duration: 60
-      arrivalRate: 1000
-      name: "1000 users per second for 60 seconds"
+      arrivalRate: 200
+      name: "200 users per second for 60 seconds"
+    - pause: 60
+    - duration: 60
+      arrivalRate: 300
+      name: "300 users per second for 60 seconds"
+    - pause: 60
+    - duration: 60
+      arrivalRate: 400
+      name: "400 users per second for 60 seconds"
 scenarios:
   - name: "Retrieve product price and inventory and write a new product to the database"
     flow:
