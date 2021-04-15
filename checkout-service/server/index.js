@@ -42,31 +42,33 @@ app.post('/priceandinventory/id/multiple', async (req, res) => {
   if (productIds.length > 30 || productIds.length === 0 || !productIds) {
     res.status(500).end();
   } else {
-    const productInfo = await getMultipleProductsPriceAndInventoryCount(productIds)
-    res.status(200).send(productsInfo);
+    try {
+      const productInfo = await getMultipleProductsPriceAndInventoryCount(productIds)
+      res.status(200).send(productsInfo);
+    } catch (e) {
+      res.status(500);
+    }
   }
 });
 
-app.post('/priceandinventory/id/createRecord', (req, res) => {
+app.post('/priceandinventory/id/createRecord', async (req, res) => {
   let newRecord = req.body;
-  createNewRecord(newRecord)
-    .then(() => {
-      res.sendStatus(200);
-    })
-    .catch((error) => {
-      res.status(500).end();
-    })
+  try {
+    await createNewRecord(newRecord)
+    res.sendStatus(200);
+  } catch (error) {
+    res.status(500).end();
+  }
 });
 
-app.put('/priceandinventory/id/updateRecord', (req, res) => {
+app.put('/priceandinventory/id/updateRecord', async (req, res) => {
   let recordToUpdate = req.body;
-  updateOneRecord(recordToUpdate)
-    .then((result) => {
-      res.status(200).send(result);
-    })
-    .catch((error) => {
-      res.status(500).end();
-    })
+  try {
+    const result = await updateOneRecord(recordToUpdate);
+    res.status(200).send(result);
+  } catch (e) {
+    res.status(500).end();
+  }
 });
 
 app.delete('/priceandinventory/id/removeRecord/:productId', (req, res) => {
