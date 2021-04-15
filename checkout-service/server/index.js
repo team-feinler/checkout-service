@@ -71,7 +71,7 @@ app.put('/priceandinventory/id/updateRecord', async (req, res) => {
   }
 });
 
-app.delete('/priceandinventory/id/removeRecord/:productId', await (req, res) => {
+app.delete('/priceandinventory/id/removeRecord/:productId', async (req, res) => {
   let { productId } = req.params;
   try {
     await removeOneRecord(productId);
