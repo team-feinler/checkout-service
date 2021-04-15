@@ -25,16 +25,16 @@ var corsOptions = {
 };
 
 //routes
-app.get('/priceandinventory/id/:productId', (req, res) => {
-  let productId = req.params.productId;
-  getProductPriceAndInventoryCount(productId)
-  .then((productInfo) => {
-    if (!productInfo.length) {
+app.get('/priceandinventory/id/:productId', async (req, res) => {
+  let { productId } = req.params;
+
+  const productInfo = await getProductPriceAndInventoryCount(productId)
+
+  if (!productInfo.length) {
       res.status(500).send('Invalid product id');
     } else {
       res.status(200).send(productInfo);
     }
-  });
 });
 
 app.post('/priceandinventory/id/multiple', (req, res) => {
