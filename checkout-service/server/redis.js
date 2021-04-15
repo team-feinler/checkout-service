@@ -7,7 +7,9 @@ const client = redis.createClient(REDIS_PORT);
 //middleware functions to export and use in server/index.js
 //set data to redis cache
 const setToRedisCache = (productIdNumber, expiration, stringifiedValueFromDatabase) => {
-  client.setex(productIdNumber, expiration, stringifiedValueFromDatabase)
+  if (productIdNumber <= 10000000 && productIdNumber >= 9600000) {
+    client.setex(productIdNumber, expiration, stringifiedValueFromDatabase)
+  }
 };
 
 //get data from redis cache
@@ -22,7 +24,5 @@ const getFromRedisCache = (req, res, next) => {
     }
   });
 };
-
-//delete data from redis cache
 
 module.exports = { setToRedisCache, getFromRedisCache };
