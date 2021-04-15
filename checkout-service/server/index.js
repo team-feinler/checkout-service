@@ -11,6 +11,7 @@ const {
   updateOneRecord,
   createNewRecord
 } = require('../database/postgres/postgresModel.js');
+const { setToRedisCache, getFromRedisCache } = require('./redis.js');
 
 //Middlewares/setup
 app.use(cors());
@@ -25,10 +26,11 @@ var corsOptions = {
 };
 
 //routes
-app.get('/priceandinventory/id/:productId', async (req, res) => {
+app.get('/priceandinventory/id/:productId', getFromRedisCache, async (req, res) => {
   let { productId } = req.params;
 
-  const productInfo = await getProductPriceAndInventoryCount(productId)
+  const productInfo = await getProductPriceAndInventoryCount(productId);
+  setToRedisCache(productId, 3600, JSON.stringify(productInfo));
 
   if (!productInfo.length) {
       res.status(500).send('Invalid product id');
