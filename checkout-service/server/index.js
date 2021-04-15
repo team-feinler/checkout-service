@@ -37,13 +37,13 @@ app.get('/priceandinventory/id/:productId', async (req, res) => {
     }
 });
 
-app.post('/priceandinventory/id/multiple', (req, res) => {
+app.post('/priceandinventory/id/multiple', async (req, res) => {
   let productIds = req.body;
   if (productIds.length > 30 || productIds.length === 0 || !productIds) {
     res.status(500).end();
   } else {
-    getMultipleProductsPriceAndInventoryCount(productIds)
-    .then(productsInfo => res.status(200).send(productsInfo));
+    const productInfo = await getMultipleProductsPriceAndInventoryCount(productIds)
+    res.status(200).send(productsInfo);
   }
 });
 
