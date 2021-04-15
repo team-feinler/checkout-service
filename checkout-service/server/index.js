@@ -71,15 +71,14 @@ app.put('/priceandinventory/id/updateRecord', async (req, res) => {
   }
 });
 
-app.delete('/priceandinventory/id/removeRecord/:productId', (req, res) => {
+app.delete('/priceandinventory/id/removeRecord/:productId', await (req, res) => {
   let { productId } = req.params;
-  removeOneRecord(productId)
-    .then(() => {
-      res.sendStatus(200);
-    })
-    .catch((err) => {
-      res.status(500).end();
-    })
+  try {
+    await removeOneRecord(productId);
+    res.sendStatus(200);
+  } catch (e) {
+    res.status(500).end();
+  }
 });
 
 app.listen(port, () => console.log(`listening on port ${port}`));
