@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const port = 4003;
 const app = express();
-// const dbQuery = require('../database/query.js'); // <-- mongoDB query functions
 const {
   getProductPriceAndInventoryCount,
   getMultipleProductsPriceAndInventoryCount,
@@ -12,7 +11,9 @@ const {
   updateOneRecord,
   createNewRecord
 } = require('../database/postgres/postgresModel.js');
+const { setToRedisCache, getFromRedisCache } = require('./redis.js');
 
+//Middlewares/setup
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -24,69 +25,63 @@ var corsOptions = {
   optionsSuccessStatus: 200
 };
 
+//routes
+app.get('/priceandinventory/id/:productId', getFromRedisCache, async (req, res) => {
+  let { productId } = req.params;
 
-app.get('/priceandinventory/id/:productId', (req, res) => {
-  let productId = req.params.productId;
-  // dbQuery.getProductPriceAndInventoryCount(productId) // <-- mongoDB query
-  getProductPriceAndInventoryCount(productId)
-  .then((productInfo) => {
-    if (!productInfo.length) {
-      res.status(404).send('Invalid product id');
+  const productInfo = await getProductPriceAndInventoryCount(productId);
+  setToRedisCache(productId, 3600, JSON.stringify(productInfo));
+
+  if (!productInfo.length) {
+      res.status(500).send('Invalid product id');
     } else {
       res.status(200).send(productInfo);
     }
-  });
 });
 
-app.post('/priceandinventory/id/multiple', (req, res) => {
+app.post('/priceandinventory/id/multiple', async (req, res) => {
   let productIds = req.body;
   if (productIds.length > 30 || productIds.length === 0 || !productIds) {
-    res.status(400).end();
+    res.status(500).end();
   } else {
-    // dbQuery.getMultipleProductsPriceAndInventoryCount(productIds)
-    getMultipleProductsPriceAndInventoryCount(productIds)
-    .then(productsInfo => res.status(200).send(productsInfo));
+    try {
+      const productInfo = await getMultipleProductsPriceAndInventoryCount(productIds)
+      res.status(200).send(productsInfo);
+    } catch (e) {
+      res.status(500);
+    }
   }
 });
 
-app.post('/priceandinventory/id/createRecord', (req, res) => {
+app.post('/priceandinventory/id/createRecord', async (req, res) => {
   let newRecord = req.body;
-  // dbQuery.createNewRecord(newRecord)
-  createNewRecord(newRecord)
-    .then(() => {
-      res.sendStatus(200);
-    })
-    .catch((error) => {
-      console.log('ERROR SAVING RECORD in server: ', error);
-      res.status(400).end();
-    })
-})
+  try {
+    await createNewRecord(newRecord)
+    res.sendStatus(200);
+  } catch (error) {
+    res.status(500).end();
+  }
+});
 
-app.put('/priceandinventory/id/updateRecord', (req, res) => {
+app.put('/priceandinventory/id/updateRecord', async (req, res) => {
   let recordToUpdate = req.body;
-  // dbQuery.updateOneRecord(recordToUpdate)
-  updateOneRecord(recordToUpdate)
-    .then((result) => {
-      res.status(200).send(result);
-    })
-    .catch((error) => {
-      console.log('FAILED TO UPDATE in server: ', error);
-      res.status(400).end();
-    })
-})
+  try {
+    const result = await updateOneRecord(recordToUpdate);
+    res.status(200).send(result);
+  } catch (e) {
+    res.status(500).end();
+  }
+});
 
-app.delete('/priceandinventory/id/removeRecord/:productId', (req, res) => {
+app.delete('/priceandinventory/id/removeRecord/:productId', async (req, res) => {
   let { productId } = req.params;
-  // dbQuery.removeOneRecord(productId)
-  removeOneRecord(productId)
-    .then(() => {
-      res.sendStatus(200);
-    })
-    .catch((err) => {
-      console.log('FAILED DELETING RECORD IN SERVER', err);
-      res.status(400).end();
-    })
-})
+  try {
+    await removeOneRecord(productId);
+    res.sendStatus(200);
+  } catch (e) {
+    res.status(500).end();
+  }
+});
 
 app.listen(port, () => console.log(`listening on port ${port}`));
 

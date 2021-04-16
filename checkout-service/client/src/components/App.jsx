@@ -59,9 +59,9 @@ export default class Checkout extends React.Component {
 
   async getSellerDetails(productId) {
     try {
-      const response = await fetchWithTimeout(`http://ec2-18-217-85-161.us-east-2.compute.amazonaws.com:4004/description/${productId}`, {
-        timeout: 3000
-      });
+      // const response = await fetchWithTimeout(`http://ec2-18-217-85-161.us-east-2.compute.amazonaws.com:4004/description/${productId}`, {
+      //   timeout: 10
+      // });
       const parsedResponse = await response.json();
       let rawItemInfo = parsedResponse[0];
       let seller = `${rawItemInfo.brand}.com Services LLC`
