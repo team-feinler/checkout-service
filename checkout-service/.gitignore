@@ -4,3 +4,5 @@ checkout_bundle.js.gz
 *config.js
 newrelic.js
 newrelic_agent.log
+login.sh
+postgresInstance.pem
