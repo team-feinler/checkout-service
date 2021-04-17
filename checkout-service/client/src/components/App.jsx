@@ -37,9 +37,11 @@ export default class Checkout extends React.Component {
 
   async getPriceAndInventory(productId) {
     try {
+      console.log('BEFORE FETCH ON CLIENT');
       const response = await fetchWithTimeout(`/priceandinventory/id/${productId}`, {
         timeout: 3000
       });
+      console.log('AFTER FETCH ON CLIENT');
       const parsedResponse = await response.json();
       let productPrice = parsedResponse[0].price;
       let productInventory = parsedResponse[0].inventory;
@@ -89,6 +91,7 @@ export default class Checkout extends React.Component {
   componentDidMount() {
     let url = window.location.href;
     let productId = url.split('/')[3] || 1000;
+    console.log('COMPONENT DID MOUNT');
     this.getPriceAndInventory(productId);
     this.getSellerDetails(productId);
   }
