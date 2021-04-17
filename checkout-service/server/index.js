@@ -28,7 +28,6 @@ var corsOptions = {
 //routes
 app.get('/priceandinventory/id/:productId', getFromRedisCache, async (req, res) => {
   let { productId } = req.params;
-
   const productInfo = await getProductPriceAndInventoryCount(productId);
   setToRedisCache(productId, 3600, JSON.stringify(productInfo));
 
